@@ -1,1 +1,1 @@
-# Repositorio de Practicas para Desarrollo Movil Integral
+# Repositorio de Practicas para Desarollo Movil Integral
