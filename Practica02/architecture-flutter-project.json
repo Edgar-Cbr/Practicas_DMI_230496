@@ -1,0 +1,49 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "flutter_application_1",
+    "output": "arquitectura-flutter-project.html",
+    "visual_preset": "blueprint",
+    "quality_profile": "showcase",
+    "views": [
+      { "id": "inicio", "label": "Inicio de la app", "focus": ["pubspec", "main-dart", "screen-functions"], "note": "Desde pubspec.yaml hasta la pantalla configurada en MaterialApp." },
+      { "id": "interaccion", "label": "Pantallas e interacción", "focus": ["main-dart", "screen-functions", "screen-counter"], "note": "Las pantallas mantienen su propio estado local con setState." },
+      { "id": "recursos", "label": "Dependencias y recursos", "focus": ["pubspec", "font-asset", "main-dart"], "note": "La configuración declara Flutter, cupertino_icons y la fuente local." },
+      { "id": "prueba", "label": "Prueba de widgets", "focus": ["widget-test", "main-dart", "screen-functions"], "note": "La prueba importa MyApp; su búsqueda de Icons.add difiere del icono plus_one usado por la pantalla." },
+      { "id": "destinos", "label": "Destinos presentes", "focus": ["pubspec", "target-android", "target-ios", "target-linux", "target-macos", "target-web", "target-windows"], "note": "Carpetas de plataforma y archivos runner/configuración encontrados en el proyecto." }
+    ]
+  },
+  "components": [
+    { "id": "pubspec", "type": "external", "label": "pubspec.yaml", "sublabel": "Flutter SDK · cupertino_icons", "pos": [80, 180], "size": [220, 70] },
+    { "id": "font-asset", "type": "external", "label": "PokemonFireRed", "sublabel": "assets/fonts/*.ttf", "pos": [80, 330], "size": [220, 70] },
+    { "id": "main-dart", "type": "backend", "label": "main.dart", "sublabel": "runApp · MyApp · MaterialApp", "pos": [390, 180], "size": [230, 70] },
+    { "id": "screen-functions", "type": "frontend", "label": "CounterFunctionsScreen", "sublabel": "home activa · + / − / reset", "pos": [720, 160], "size": [230, 76] },
+    { "id": "screen-counter", "type": "frontend", "label": "CounterScreen", "sublabel": "pantalla adicional · +", "pos": [720, 440], "size": [230, 76] },
+    { "id": "widget-test", "type": "backend", "label": "widget_test.dart", "sublabel": "prueba smoke de incremento", "pos": [390, 650], "size": [230, 76] },
+    { "id": "target-android", "type": "cloud", "label": "Android", "sublabel": "android/", "pos": [990, 150], "size": [140, 64] },
+    { "id": "target-ios", "type": "cloud", "label": "iOS", "sublabel": "ios/", "pos": [1150, 150], "size": [140, 64] },
+    { "id": "target-linux", "type": "cloud", "label": "Linux", "sublabel": "linux/", "pos": [990, 240], "size": [140, 64] },
+    { "id": "target-macos", "type": "cloud", "label": "macOS", "sublabel": "macos/", "pos": [1150, 240], "size": [140, 64] },
+    { "id": "target-web", "type": "cloud", "label": "Web", "sublabel": "web/", "pos": [990, 330], "size": [140, 64] },
+    { "id": "target-windows", "type": "cloud", "label": "Windows", "sublabel": "windows/", "pos": [1150, 330], "size": [140, 64] }
+  ],
+  "boundaries": [
+    { "kind": "region", "label": "Dependencias y recursos", "wraps": ["pubspec", "font-asset"], "pad": 24 },
+    { "kind": "region", "label": "Código fuente Dart", "wraps": ["main-dart", "widget-test"], "pad": 24 },
+    { "kind": "region", "label": "Pantallas", "wraps": ["screen-functions", "screen-counter"], "pad": 24 },
+    { "kind": "region", "label": "Destinos de compilación", "wraps": ["target-android", "target-ios", "target-linux", "target-macos", "target-web", "target-windows"], "pad": 24 }
+  ],
+  "connections": [
+    { "id": "config-font", "from": "pubspec", "to": "font-asset", "label": "declara asset", "labelAt": [200, 264] },
+    { "id": "config-entry", "from": "pubspec", "to": "main-dart", "label": "paquete Flutter" },
+    { "id": "entry-home", "from": "main-dart", "to": "screen-functions", "label": "home configurada" },
+    { "id": "entry-alternate", "from": "main-dart", "to": "screen-counter", "label": "importa; no es home", "variant": "dashed" },
+    { "id": "font-used", "from": "font-asset", "to": "main-dart", "label": "familia de tema" },
+    { "id": "test-import", "from": "widget-test", "to": "main-dart", "label": "importa MyApp" }
+  ],
+  "cards": [
+    { "dot": "cyan", "title": "Aplicación", "items": ["MyApp abre CounterFunctionsScreen con tema oscuro y PokemonFireRed", "CounterScreen también existe, pero no es el home configurado"] },
+    { "dot": "emerald", "title": "Configuración y verificación", "items": ["pubspec declara Flutter, cupertino_icons y la fuente local", "widget_test busca Icons.add; la pantalla principal usa Icons.plus_one"] }
+  ]
+}
