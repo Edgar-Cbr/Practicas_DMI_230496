@@ -13,4 +13,4 @@ Las y los estudiantes revisarán la instalación del entorno de desarrollo integ
 
 | Estado inicial | Contador positivo | Contador negativo |
 |:---:|:---:|:---:|
-| ![Estado inicial](/images/1.png) | ![Contador positivo](/images/1.png) | ![Contador negativo](/images/-1.png) |
+| ![Estado inicial](../images/0.png) | ![Contador positivo](../images/1.png) | ![Contador negativo](../images/-1.png) |
