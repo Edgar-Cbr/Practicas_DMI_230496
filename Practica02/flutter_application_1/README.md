@@ -7,7 +7,7 @@ Mi Primer Aplicación Móvil con Flutter. La práctica consiste en agregar los b
 
 [Abrir diagrama interactivo](https://edgar-cbr.github.io/Practicas_DMI_230496/)
 
-[![Vista previa del diagrama](../arquitectura-flutter-application.visual-check.1440x900.dark.png)](https://edgar-cbr.github.io/Practicas_DMI_230496/)
+![Vista previa del diagrama](/Practica02/arquitectura-flutter-project.visual-check.1440x900.dark.png)
 
 ## Tecnologías utilizadas
 
