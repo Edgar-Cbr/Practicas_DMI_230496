@@ -22,36 +22,11 @@ Desarrollar una aplicación de mensajería interactiva ("Yes No App") implementa
 
 ## Arquitectura de Software
 
-La aplicación sigue los principios de **Clean Architecture** dividida en cuatro capas desacopladas:
+La aplicación sigue los principios de **Clean Architecture** dividida en capas desacopladas.
 
-```
-yes_no_app/
-├── lib/
-│   ├── config/
-│   │   ├── helpers/
-│   │   │   └── get_yes_no_answer.dart       # Petición HTTP a la API yesno.wtf mediante Dio
-│   │   └── theme/
-│   │       └── app_theme.dart               # Configuración del tema y paleta de colores Material 3
-│   ├── domain/
-│   │   └── entities/
-│   │       └── message.dart                 # Entidad pura del mensaje (texto, imagen, emisor)
-│   ├── infrastructure/
-│   │   └── models/
-│   │       └── yes_no_model.dart            # Mapeo del JSON de respuesta de la API a la entidad
-│   ├── presentation/
-│   │   ├── providers/
-│   │   │   └── chat_provider.dart           # Gestor de estado: lista de mensajes, envío, auto-scroll
-│   │   ├── screens/
-│   │   │   └── chat/
-│   │   │       └── chat_screen.dart         # Pantalla principal con AppBar y lista de mensajes
-│   │   └── widgets/
-│   │       ├── chat/
-│   │       │   ├── my_message_bubble.dart   # Burbuja del usuario (alineada a la derecha)
-│   │       │   └── her_message_bubble.dart  # Burbuja de respuesta con GIF y loader
-│   │       └── shared/
-│   │           └── message_field_box.dart   # Caja de texto con botón de envío y control de foco
-│   └── main.dart                            # Punto de entrada y configuración de MultiProvider
-```
+[Ver diagrama interactivo en GitHub Pages](https://Edgar-Cbr.github.io/Practicas_DMI_230496/Practica03/yes_no_app/arquitectura-yes_no_app.html)
+
+[![Captura del diagrama de arquitectura](./yes_no_app/arquitectura-yes_no_app.visual-check.1440x900.light.png)](https://Edgar-Cbr.github.io/Practicas_DMI_230496/Practica03/yes_no_app/arquitectura-yes_no_app.html)
 
 ---
 
