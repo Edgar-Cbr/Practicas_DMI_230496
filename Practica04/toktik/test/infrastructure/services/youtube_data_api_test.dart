@@ -41,7 +41,7 @@ void main() {
           );
         }
         if (request.url.path.endsWith('/videos')) {
-          expect(request.url.queryParameters['part'], 'statistics');
+          expect(request.url.queryParameters['part'], 'snippet,statistics');
           return http.Response(
             jsonEncode({
               'items': [
