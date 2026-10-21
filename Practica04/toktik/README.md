@@ -10,40 +10,74 @@ La app separa presentación, lógica de dominio, repositorios y fuentes de datos
 
 ## Diagrama de arquitectura
 
-### Arquitectura general
-
-Flujo por capas: presentación, estado y dominio, repositorios/datasources, APIs
-externas, persistencia local e integración nativa para los iconos estacionales.
-
-[Abrir diagrama interactivo en GitHub Pages](https://Edgar-Cbr.github.io/Practicas_DMI_230496/Practica04/toktik/arquitectura-toktik/architecture-toktik.preflight.html)
-
-[![Vista previa del diagrama de arquitectura](./arquitectura-toktik/architecture-toktik.preflight.visual-check.1440x900.dark.png)](https://Edgar-Cbr.github.io/Practicas_DMI_230496/Practica04/toktik/arquitectura-toktik/architecture-toktik.preflight.html)
-
-### Arquitectura general (diagrama actualizado)
-
-El diagrama muestra las capas de la app, las fuentes de video y la persistencia
-local.
+El diagrama representa la separación por capas de TokTik: presentación, gestión de estado con Providers, lógica de dominio, repositorios, datasources remotos y locales, y persistencia.
 
 [Abrir diagrama interactivo en GitHub Pages](https://Edgar-Cbr.github.io/Practicas_DMI_230496/Practica04/toktik/arquitectura-toktik/arquitectura-toktik.html)
 
 [![Vista previa del diagrama de arquitectura](./arquitectura-toktik/arquitectura-toktik.visual-check.1440x900.dark.png)](https://Edgar-Cbr.github.io/Practicas_DMI_230496/Practica04/toktik/arquitectura-toktik/arquitectura-toktik.html)
 
-## Iconos
+```mermaid
+graph TD
+    subgraph Presentacion["Capa de Presentación"]
+        DS[DiscoverScreen<br><i>Navegación y configuración</i>]
+        VSV[VideoScrollableView<br><i>Feed vertical y reproductores</i>]
+        DS --> VSV
+    end
 
-| TokTik | TokTik Halloween | TokTik Navidad |
-|:---:|:---:|:---:|
-| ![OG](./images/TokTik_OG.png) | ![Halloween](./images/TokTik_Hallowen.jpg) | ![Navidad](./images/TokTik_Navidad.png) |
+    subgraph State["Gestión de Estado (Providers)"]
+        DP[DiscoverProvider<br><i>Paginación y feed</i>]
+        LP[LikesProvider<br><i>Likes y favoritos</i>]
+        TP[ThemeProvider<br><i>Temas e iconos de temporada</i>]
+    end
 
+    VSV --> DP
+    VSV --> LP
+    DS --> TP
 
-## Evidencia
+    subgraph Dominio["Capa de Dominio"]
+        VFR["&lt;&lt;interface&gt;&gt;<br>VideoFeedRepository"]
+        VP[VideoPost<br><i>Entidad de dominio</i>]
+    end
 
-### Demostración de la app
+    DP --> VFR
+    VFR -.-> VP
 
-https://github.com/user-attachments/assets/cbe2ba88-b0c1-4e0d-a317-9fe3de8a1053
+    subgraph Infraestructura["Infraestructura y Repositorios"]
+        VFRI[VideoFeedRepositoryImpl]
+        LVD[LocalVideoDatasource]
+        YTA[YoutubeDataApi]
+        GIA[GiphyApi]
+        DMA[DailymotionApi]
+        VPD[VideoPreferencesDatasource]
+        LIS[LauncherIconService]
+    end
 
-### Pantalla de carga
+    VFRI -- Implementa --> VFR
+    VFRI --> LVD
+    VFRI --> YTA
+    VFRI --> GIA
+    VFRI --> DMA
 
-https://github.com/user-attachments/assets/1d6402f7-22cc-43c9-9ab7-0ef70a23de4d
+    LP --> VPD
+    TP --> VPD
+    TP --> LIS
+
+    subgraph Externo["Servicios Externos y Persistencia"]
+        YT[(YouTube Data API v3)]
+        GI[(GIPHY API)]
+        DM[(Dailymotion API)]
+        SP[(SharedPreferences)]
+        ASSETS[(Assets locales .mp4)]
+        NAT[(Icono Nativo / MethodChannel)]
+    end
+
+    YTA --> YT
+    GIA --> GI
+    DMA --> DM
+    LVD --> ASSETS
+    VPD --> SP
+    LIS --> NAT
+```
 
 
 ## Funcionalidades
