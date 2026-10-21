@@ -1,0 +1,62 @@
+services:
+  postgres:
+    image: postgres:16
+    container_name: postgres_db
+    restart: always
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: admin123
+      POSTGRES_DB: app_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  mongo:
+    image: mongo:7
+    container_name: mongo_db
+    restart: always
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: admin
+      MONGO_INITDB_ROOT_PASSWORD: admin123
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo_data:/data/db
+
+  keycloak:
+    image: quay.io/keycloak/keycloak:25.0
+    container_name: keycloak
+    command: start-dev
+    restart: always
+    environment:
+      KEYCLOAK_ADMIN: admin
+      KEYCLOAK_ADMIN_PASSWORD: admin123
+      # Configuración para conectar Keycloak con tu servicio de Postgres:
+      KC_DB: postgres
+      KC_DB_URL: jdbc:postgresql://postgres:5432/app_db
+      KC_DB_USERNAME: admin
+      KC_DB_PASSWORD: admin123
+    ports:
+      - "8080:8080"
+    depends_on:
+      - postgres
+
+  api:
+    build: .
+    container_name: fastapi_api
+    restart: always
+    environment:
+      DATABASE_URL: postgresql+psycopg2://admin:admin123@postgres:5432/app_db
+      MONGO_URL: mongodb://admin:admin123@mongo:27017/
+      KEYCLOAK_URL: http://keycloak:8080
+    ports:
+      - "8000:8000"
+    depends_on:
+      - postgres
+      - mongo
+      - keycloak
+
+volumes:
+  postgres_data:
+  mongo_data:
