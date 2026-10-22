@@ -1,8 +1,11 @@
+import 'package:animate_do/animate_do.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:pointer_interceptor/pointer_interceptor.dart';
 import 'package:toktik/presentation/widgets/shared/expandable_caption.dart';
+import 'package:toktik/presentation/widgets/video/video_background.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 import 'package:webview_flutter_android/webview_flutter_android.dart';
 
@@ -36,6 +39,8 @@ class _DailymotionPlayerState extends State<DailymotionPlayer> {
   late final WebViewController _controller;
   bool _loading = false;
   String? _error;
+  bool _showHeartAnimation = false;
+  Offset _heartPosition = Offset.zero;
 
   @override
   void initState() {
@@ -45,9 +50,6 @@ class _DailymotionPlayerState extends State<DailymotionPlayer> {
     if (widget.isActive) _loadVideo();
   }
 
-  /// En Android el WebView trae JavaScript APAGADO y bloquea el autoplay, y el
-  /// reproductor de Dailymotion necesita ambas cosas para mostrar el video.
-  /// En Flutter Web estos métodos no existen (es un iframe), por eso se omiten.
   void _configureController() {
     if (kIsWeb) return;
     _controller
@@ -106,6 +108,22 @@ class _DailymotionPlayerState extends State<DailymotionPlayer> {
     _controller.loadRequest(url);
   }
 
+  void _handleDoubleTap(TapDownDetails details) {
+    HapticFeedback.lightImpact();
+    setState(() {
+      _heartPosition = details.localPosition;
+      _showHeartAnimation = true;
+    });
+
+    widget.onDoubleTap?.call();
+
+    Future.delayed(const Duration(milliseconds: 900), () {
+      if (mounted) {
+        setState(() => _showHeartAnimation = false);
+      }
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     if (!widget.isActive) {
@@ -115,22 +133,8 @@ class _DailymotionPlayerState extends State<DailymotionPlayer> {
       fit: StackFit.expand,
       children: [
         const ColoredBox(color: Colors.black),
-        // En móvil el toque pasa al PageView/gestos de Flutter (IgnorePointer).
         IgnorePointer(child: WebViewWidget(controller: _controller)),
-        const IgnorePointer(
-          child: DecoratedBox(
-            decoration: BoxDecoration(
-              gradient: LinearGradient(
-                begin: Alignment.bottomCenter,
-                end: Alignment.topCenter,
-                colors: [Color(0xDD000000), Colors.transparent],
-                stops: [0, 0.5],
-              ),
-            ),
-          ),
-        ),
-        // En Flutter Web el iframe se traga la rueda del mouse y los clics;
-        // PointerInterceptor + Listener se los devuelven al PageView.
+        const VideoBackground(),
         Positioned.fill(
           child: PointerInterceptor(
             child: Listener(
@@ -139,7 +143,7 @@ class _DailymotionPlayerState extends State<DailymotionPlayer> {
               onPointerDown: widget.onPointerDown,
               child: GestureDetector(
                 behavior: HitTestBehavior.opaque,
-                onDoubleTap: widget.onDoubleTap,
+                onDoubleTapDown: _handleDoubleTap,
                 child: const SizedBox.expand(),
               ),
             ),
@@ -160,13 +164,43 @@ class _DailymotionPlayerState extends State<DailymotionPlayer> {
               ),
             ),
           ),
+        if (_showHeartAnimation)
+          Positioned(
+            left: _heartPosition.dx - 45,
+            top: _heartPosition.dy - 45,
+            child: IgnorePointer(
+              child: ZoomIn(
+                duration: const Duration(milliseconds: 400),
+                child: FadeOut(
+                  delay: const Duration(milliseconds: 450),
+                  duration: const Duration(milliseconds: 400),
+                  child: Transform.rotate(
+                    angle: -0.15,
+                    child: Icon(
+                      Icons.favorite_rounded,
+                      size: 90,
+                      color: Colors.redAccent.withValues(alpha: 0.95),
+                      shadows: const [
+                        Shadow(
+                          color: Colors.black54,
+                          blurRadius: 16,
+                          offset: Offset(0, 4),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          ),
         Positioned(
-          bottom: 50,
-          left: 20,
+          bottom: 30,
+          left: 16,
           child: PointerInterceptor(
             child: ExpandableCaption(
               title: widget.caption,
               description: widget.description,
+              author: '@dailymotion_feed',
             ),
           ),
         ),
