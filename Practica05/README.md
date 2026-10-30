@@ -5,3 +5,4 @@ En este directorio se encuentra el proyecto correspondiente a la **Práctica 05*
 ## Proyectos incluidos
 
 - 📱 **[Widgets App](./widgets_app/README.md)**: Aplicación catálogo de widgets, controles y componentes de interfaz en Flutter con Riverpod, GoRouter, animaciones y tematización Material 3.
+- 📐 **[Diagrama de Arquitectura Interactivo (Archify)](./widgets_app/arquitectura-widgets_app/arquitectura-widgets_app.html)**: Diagrama interactivo de arquitectura del proyecto generado con Archify y publicado para GitHub Pages.

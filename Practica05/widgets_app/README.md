@@ -33,7 +33,69 @@ Construir una aplicación catálogo interactiva en Flutter que explore y demuest
 
 ---
 
-## Arquitectura del Proyecto
+## Diagrama de arquitectura
+
+El diagrama interactivo generado con **Archify** describe la separación modular y el flujo de dependencias de la aplicación: configuración global y arranque con `ProviderScope`, gestión de estado global desacoplada mediante `Riverpod`, enrutamiento declarativo con `GoRouter`, componentes base de navegación (`HomeScreen` y `SideMenu`), y el catálogo de pantallas de widgets interactivos.
+
+[Abrir diagrama interactivo en GitHub Pages](https://Edgar-Cbr.github.io/Practicas_DMI_230496/Practica05/widgets_app/arquitectura-widgets_app/arquitectura-widgets_app.html)
+
+[![Vista previa del diagrama de arquitectura](./arquitectura-widgets_app/arquitectura-widgets_app.visual-check.1440x900.dark.png)](https://Edgar-Cbr.github.io/Practicas_DMI_230496/Practica05/widgets_app/arquitectura-widgets_app/arquitectura-widgets_app.html)
+
+### Diagrama de Componentes y Flujo (Mermaid)
+
+```mermaid
+graph TD
+    subgraph Config["Configuración Global y Entorno"]
+        PUBSPEC[pubspec.yaml<br><i>riverpod · go_router · animate_do</i>]
+        MAIN[main.dart<br><i>ProviderScope · MainApp</i>]
+        THEME[app_theme.dart<br><i>colorList (9 colores) · AppTheme</i>]
+        ROUTER[app_router.dart<br><i>GoRouter · 11 rutas declarativas</i>]
+        MENU[menu_items.dart<br><i>appMenuItems · 10 accesos</i>]
+        ASSETS[(assets/images/<br><i>1.png, 2.png, jar-loading.gif</i>)]
+    end
+
+    subgraph State["Capa de Estado Global (Riverpod)"]
+        NOTIFIER[ThemeNotifier<br><i>StateNotifier&lt;AppTheme&gt;</i>]
+        THEME_PROV[theme_provider.dart<br><i>themeNotifierProvider · colorListProvider</i>]
+        COUNTER_PROV[counter_provider.dart<br><i>counterProvider = StateProvider&lt;int&gt;</i>]
+    end
+
+    subgraph UI_Base["Capa de Presentación · Menú y Navegación"]
+        HOME[HomeScreen<br><i>Catálogo en tarjetas y ListTile</i>]
+        SIDE[SideMenu<br><i>NavigationDrawer responsive</i>]
+    end
+
+    subgraph Screens["Capa de Presentación · Catálogo de Widgets"]
+        S_THEME[ThemeChangerScreen<br><i>/theme-changer · Selector de paleta M3</i>]
+        S_COUNTER[CounterScreen<br><i>/counter-river · ConsumerWidget</i>]
+        S_BUTTONS[ButtonsScreen<br><i>/buttons · 6 variantes de botón</i>]
+        S_CARDS[CardsScreen<br><i>/cards · 4 estilos de tarjeta M3</i>]
+        S_PROGRESS[ProgressScreen<br><i>/progress · StreamBuilder loaders</i>]
+        S_SNACK[SnackbarScreen<br><i>/snackbars · SnackBar &amp; AlertDialog</i>]
+        S_ANIM[AnimatedScreen<br><i>/animated · AnimatedContainer</i>]
+        S_UI[UiControlsScreen<br><i>/ui-controls · Switch, Radio, Checkbox</i>]
+        S_TUT[AppTutorialScreen<br><i>/tutorial · PageView + animate_do</i>]
+        S_INF[InfiniteScrollScreen<br><i>/infinite · RefreshIndicator</i>]
+    end
+
+    PUBSPEC --> MAIN
+    MAIN --> THEME
+    MAIN --> ROUTER
+    MAIN --> NOTIFIER
+    THEME_PROV --> NOTIFIER
+    ROUTER --> MENU
+    ROUTER --> HOME
+    MENU --> HOME
+    MENU --> SIDE
+    HOME --> SIDE
+
+    S_THEME --> THEME_PROV
+    S_COUNTER --> COUNTER_PROV
+    S_TUT --> ASSETS
+    S_INF --> ASSETS
+```
+
+### Estructura de Directorios
 
 ```
 Practica05/widgets_app/

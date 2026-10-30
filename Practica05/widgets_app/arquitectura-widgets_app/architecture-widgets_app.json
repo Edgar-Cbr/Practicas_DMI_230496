@@ -1,0 +1,603 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "Arquitectura de Widgets App",
+    "output": "arquitectura-widgets_app.html",
+    "visual_preset": "blueprint",
+    "quality_profile": "showcase",
+    "legend": {
+      "mode": "auto",
+      "entries": {
+        "frontend": {
+          "label": "Presentación y UI (Widgets)"
+        },
+        "backend": {
+          "label": "Configuración y Estado (Riverpod)"
+        },
+        "external": {
+          "label": "Librerías y Recursos Locales"
+        }
+      }
+    },
+    "views": [
+      {
+        "id": "flujo-completo",
+        "label": "Flujo completo de la aplicación",
+        "focus": [
+          "pubspec",
+          "main",
+          "app-theme",
+          "app-router",
+          "theme-notifier",
+          "home-screen",
+          "side-menu"
+        ],
+        "note": "Inicio desde ProviderScope, carga de tema dinámico M3 y enrutamiento GoRouter hacia el catálogo."
+      },
+      {
+        "id": "estado-riverpod",
+        "label": "Gestión de Estado (Riverpod)",
+        "focus": [
+          "main",
+          "theme-notifier",
+          "theme-providers",
+          "counter-provider",
+          "screen-theme",
+          "screen-counter"
+        ],
+        "note": "StateNotifier para AppTheme mutable y StateProvider para contador reactivo con ConsumerWidget."
+      },
+      {
+        "id": "navegacion-menu",
+        "label": "Navegación y Catálogo",
+        "focus": [
+          "app-router",
+          "menu-items",
+          "home-screen",
+          "side-menu",
+          "screen-buttons",
+          "screen-cards"
+        ],
+        "note": "Desacoplamiento total de rutas con appMenuItems compartido entre el menú inicial y el NavigationDrawer."
+      },
+      {
+        "id": "animaciones-recursos",
+        "label": "Animaciones y Recursos",
+        "focus": [
+          "assets",
+          "animate-do-pkg",
+          "screen-animated",
+          "screen-tutorial",
+          "screen-infinite"
+        ],
+        "note": "Integración de assets locales, AnimatedContainer e interpolación de animaciones con animate_do."
+      }
+    ]
+  },
+  "components": [
+    {
+      "id": "pubspec",
+      "type": "backend",
+      "label": "pubspec.yaml",
+      "tag": "riverpod · go_router · animate_do",
+      "pos": [
+        60,
+        150
+      ],
+      "size": [
+        180,
+        62
+      ]
+    },
+    {
+      "id": "main",
+      "type": "backend",
+      "label": "main.dart",
+      "tag": "ProviderScope · MainApp",
+      "pos": [
+        280,
+        150
+      ],
+      "size": [
+        180,
+        62
+      ]
+    },
+    {
+      "id": "app-theme",
+      "type": "backend",
+      "label": "app_theme.dart",
+      "tag": "colorList (9 colores) · AppTheme",
+      "pos": [
+        500,
+        150
+      ],
+      "size": [
+        205,
+        62
+      ]
+    },
+    {
+      "id": "app-router",
+      "type": "backend",
+      "label": "app_router.dart",
+      "tag": "GoRouter · 11 rutas declarativas",
+      "pos": [
+        745,
+        150
+      ],
+      "size": [
+        210,
+        62
+      ]
+    },
+    {
+      "id": "menu-items",
+      "type": "backend",
+      "label": "menu_items.dart",
+      "tag": "appMenuItems (10 opciones)",
+      "pos": [
+        995,
+        150
+      ],
+      "size": [
+        205,
+        62
+      ]
+    },
+    {
+      "id": "assets",
+      "type": "external",
+      "label": "assets/images/",
+      "tag": "1.png · 2.png · jar-loading.gif",
+      "pos": [
+        1240,
+        150
+      ],
+      "size": [
+        205,
+        62
+      ]
+    },
+    {
+      "id": "theme-notifier",
+      "type": "backend",
+      "label": "ThemeNotifier",
+      "tag": "StateNotifier<AppTheme>",
+      "pos": [
+        280,
+        310
+      ],
+      "size": [
+        190,
+        62
+      ]
+    },
+    {
+      "id": "theme-providers",
+      "type": "backend",
+      "label": "theme_provider.dart",
+      "tag": "themeNotifierProvider · colorList",
+      "pos": [
+        510,
+        310
+      ],
+      "size": [
+        215,
+        62
+      ]
+    },
+    {
+      "id": "counter-provider",
+      "type": "backend",
+      "label": "counter_provider.dart",
+      "tag": "counterProvider = StateProvider",
+      "pos": [
+        765,
+        310
+      ],
+      "size": [
+        210,
+        62
+      ]
+    },
+    {
+      "id": "riverpod-pkg",
+      "type": "external",
+      "label": "flutter_riverpod",
+      "tag": "Inyección de dependencias y estado",
+      "pos": [
+        1015,
+        310
+      ],
+      "size": [
+        205,
+        62
+      ]
+    },
+    {
+      "id": "gorouter-pkg",
+      "type": "external",
+      "label": "go_router",
+      "tag": "Enrutador declarativo URL",
+      "pos": [
+        1260,
+        310
+      ],
+      "size": [
+        185,
+        62
+      ]
+    },
+    {
+      "id": "home-screen",
+      "type": "frontend",
+      "label": "HomeScreen",
+      "tag": "ListView interactivo · Drawer",
+      "pos": [
+        60,
+        470
+      ],
+      "size": [
+        190,
+        62
+      ]
+    },
+    {
+      "id": "side-menu",
+      "type": "frontend",
+      "label": "SideMenu",
+      "tag": "NavigationDrawer responsive",
+      "pos": [
+        285,
+        470
+      ],
+      "size": [
+        195,
+        62
+      ]
+    },
+    {
+      "id": "screen-theme",
+      "type": "frontend",
+      "label": "ThemeChangerScreen",
+      "tag": "RadioListTile de colores · Dark Mode",
+      "pos": [
+        520,
+        470
+      ],
+      "size": [
+        220,
+        62
+      ]
+    },
+    {
+      "id": "screen-counter",
+      "type": "frontend",
+      "label": "CounterScreen",
+      "tag": "ConsumerWidget · ref.watch(counter)",
+      "pos": [
+        780,
+        470
+      ],
+      "size": [
+        210,
+        62
+      ]
+    },
+    {
+      "id": "screen-buttons",
+      "type": "frontend",
+      "label": "ButtonsScreen",
+      "tag": "Elevated, Filled, Outlined, Custom",
+      "pos": [
+        1030,
+        470
+      ],
+      "size": [
+        205,
+        62
+      ]
+    },
+    {
+      "id": "screen-cards",
+      "type": "frontend",
+      "label": "CardsScreen",
+      "tag": "4 variantes de Card M3",
+      "pos": [
+        1275,
+        470
+      ],
+      "size": [
+        170,
+        62
+      ]
+    },
+    {
+      "id": "screen-progress",
+      "type": "frontend",
+      "label": "ProgressScreen",
+      "tag": "Circular, Linear & StreamBuilder",
+      "pos": [
+        60,
+        630
+      ],
+      "size": [
+        195,
+        62
+      ]
+    },
+    {
+      "id": "screen-snackbars",
+      "type": "frontend",
+      "label": "SnackbarScreen",
+      "tag": "SnackBar, AboutDialog & Alert",
+      "pos": [
+        290,
+        630
+      ],
+      "size": [
+        200,
+        62
+      ]
+    },
+    {
+      "id": "screen-animated",
+      "type": "frontend",
+      "label": "AnimatedScreen",
+      "tag": "AnimatedContainer reactivo",
+      "pos": [
+        530,
+        630
+      ],
+      "size": [
+        210,
+        62
+      ]
+    },
+    {
+      "id": "screen-uicontrols",
+      "type": "frontend",
+      "label": "UiControlsScreen",
+      "tag": "Switch, RadioList, CheckboxList",
+      "pos": [
+        780,
+        630
+      ],
+      "size": [
+        215,
+        62
+      ]
+    },
+    {
+      "id": "screen-tutorial",
+      "type": "frontend",
+      "label": "AppTutorialScreen",
+      "tag": "PageView carrusel · Botón animado",
+      "pos": [
+        1035,
+        630
+      ],
+      "size": [
+        210,
+        62
+      ]
+    },
+    {
+      "id": "screen-infinite",
+      "type": "frontend",
+      "label": "InfiniteScrollScreen",
+      "tag": "RefreshIndicator · Paginación",
+      "pos": [
+        1285,
+        630
+      ],
+      "size": [
+        200,
+        62
+      ]
+    },
+    {
+      "id": "animate-do-pkg",
+      "type": "external",
+      "label": "animate_do",
+      "tag": "Animación FadeInRight",
+      "pos": [
+        1525,
+        630
+      ],
+      "size": [
+        155,
+        62
+      ]
+    }
+  ],
+  "boundaries": [
+    {
+      "kind": "region",
+      "label": "Configuración Global y Entorno",
+      "wraps": [
+        "pubspec",
+        "main",
+        "app-theme",
+        "app-router",
+        "menu-items",
+        "assets"
+      ],
+      "pad": 22
+    },
+    {
+      "kind": "region",
+      "label": "Capa de Estado Global (Riverpod)",
+      "wraps": [
+        "theme-notifier",
+        "theme-providers",
+        "counter-provider",
+        "riverpod-pkg",
+        "gorouter-pkg"
+      ],
+      "pad": 22
+    },
+    {
+      "kind": "region",
+      "label": "Capa de Presentación · Menú y Pantallas Principales",
+      "wraps": [
+        "home-screen",
+        "side-menu",
+        "screen-theme",
+        "screen-counter",
+        "screen-buttons",
+        "screen-cards"
+      ],
+      "pad": 22
+    },
+    {
+      "kind": "region",
+      "label": "Capa de Presentación · Controles y Experiencia Interactiva",
+      "wraps": [
+        "screen-progress",
+        "screen-snackbars",
+        "screen-animated",
+        "screen-uicontrols",
+        "screen-tutorial",
+        "screen-infinite",
+        "animate-do-pkg"
+      ],
+      "pad": 22
+    }
+  ],
+  "connections": [
+    {
+      "id": "c-pubspec-main",
+      "from": "pubspec",
+      "to": "main",
+      "label": "dependencias",
+      "variant": "default"
+    },
+    {
+      "id": "c-main-theme",
+      "from": "main",
+      "to": "app-theme",
+      "label": "configura tema M3",
+      "variant": "emphasis"
+    },
+    {
+      "id": "c-main-router",
+      "from": "main",
+      "to": "app-router",
+      "label": "inicia enrutador",
+      "variant": "emphasis"
+    },
+    {
+      "id": "c-router-menu",
+      "from": "app-router",
+      "to": "menu-items",
+      "label": "rutas de items",
+      "variant": "default"
+    },
+    {
+      "id": "c-main-themenotifier",
+      "from": "main",
+      "to": "theme-notifier",
+      "label": "observa AppTheme",
+      "variant": "default"
+    },
+    {
+      "id": "c-router-home",
+      "from": "app-router",
+      "to": "home-screen",
+      "label": "ruta raíz '/'",
+      "variant": "emphasis"
+    },
+    {
+      "id": "c-menu-home",
+      "from": "menu-items",
+      "to": "home-screen",
+      "label": "lista opciones",
+      "variant": "default"
+    },
+    {
+      "id": "c-menu-side",
+      "from": "menu-items",
+      "to": "side-menu",
+      "label": "opciones Drawer",
+      "variant": "default"
+    },
+    {
+      "id": "c-home-side",
+      "from": "home-screen",
+      "to": "side-menu",
+      "label": "abre menú lateral",
+      "variant": "default"
+    },
+    {
+      "id": "c-themeprov-notifier",
+      "from": "theme-providers",
+      "to": "theme-notifier",
+      "label": "state notifier",
+      "variant": "default"
+    },
+    {
+      "id": "c-screentheme-themeprov",
+      "from": "screen-theme",
+      "to": "theme-providers",
+      "label": "toggle dark / color",
+      "variant": "emphasis"
+    },
+    {
+      "id": "c-screencounter-counterprov",
+      "from": "screen-counter",
+      "to": "counter-provider",
+      "label": "lee y muta contador",
+      "variant": "default"
+    },
+    {
+      "id": "c-tutorial-animatedo",
+      "from": "screen-tutorial",
+      "to": "animate-do-pkg",
+      "label": "FadeInRight",
+      "variant": "default"
+    },
+    {
+      "id": "c-tutorial-assets",
+      "from": "screen-tutorial",
+      "to": "assets",
+      "label": "imágenes tutorial",
+      "variant": "default"
+    },
+    {
+      "id": "c-infinite-assets",
+      "from": "screen-infinite",
+      "to": "assets",
+      "label": "jar-loading.gif",
+      "variant": "default"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "cyan",
+      "title": "Estado Reactivo (Riverpod)",
+      "items": [
+        "ThemeNotifier encapsula el modo oscuro y la paleta dinámica con StateNotifier<AppTheme>.",
+        "counterProvider demuestra el uso directo de StateProvider y actualización reactiva con ConsumerWidget."
+      ]
+    },
+    {
+      "dot": "emerald",
+      "title": "Navegación Desacoplada (GoRouter)",
+      "items": [
+        "Rutas declarativas centralizadas en app_router.dart mapeadas por nombre y ruta URL.",
+        "appMenuItems alimenta de forma unificada tanto el menú de tarjetas principal como el NavigationDrawer lateral."
+      ]
+    },
+    {
+      "dot": "violet",
+      "title": "Interactividad y Animaciones",
+      "items": [
+        "animate_do coordina transiciones suaves en el tutorial de bienvenida con PageView.",
+        "AnimatedContainer transforma geometría, radio de curvatura y color reactivamente."
+      ]
+    }
+  ]
+}
