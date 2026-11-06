@@ -48,41 +48,7 @@ desde el navegador.
 
 ### Cinemapedia v0.1.0 en Appetize
 
-![Cinemapedia v0.1.0 en Appetize](assets/images/Cinemapedia-Appetize.png)
-
-Captura del panel de Appetize.io con la app "Cinemapedia" (paquete `com.example.cinemapedia`): se ve
-la versión 0.1.0, el historial de builds con la carga y los controles
-para iniciar la prueba del APK.
-
-## Capturas
-
-<div align="center">
-
-| Pantalla de carga | Inicio y navegación | Menú Lateral |
-| :---: | :---: | :---: |
-| <img src="assets/images/LoadScreen.gif" alt="Pantalla de carga" width="215" /> | <img src="assets/images/Inicio.jpeg" alt="Inicio" width="215" /> | <img src="assets/images/Menu.jpeg" alt="Menú lateral" width="215" /> |
-
-| Detalles de Pelicula | Elenco | Favoritos |
-| :---: | :---: | :---: |
-| <img src="assets/images/Descripcion.jpeg" alt="Detalle" width="215" /> | <img src="assets/images/Elenco.jpeg" alt="Elenco" width="215" /> | <img src="assets/images/Favoritos.jpeg" alt="Favoritos" width="215" /> |
-
-</div>
-
-### Idiomas
-
-La app cambia de idioma desde el menú lateral, y se traducen los textos y los datos de las películas.
-
-<div align="center">
-
-| MX (Español) | US (English) | DE (Deutsch) |
-| :---: | :---: | :---: |
-| <img src="assets/images/Inicio.jpeg" alt="Español" width="215" /> | <img src="assets/images/English.jpeg" alt="English" width="215" /> | <img src="assets/images/Aleman.jpeg" alt="Deutsch" width="215" /> |
-
-| CN (中文) | EG (العربية) | Clasificacion |
-| :---: | :---: | :---: |
-| <img src="assets/images/Chino.jpeg" alt="中文" width="215" /> | <img src="assets/images/Arabe.jpeg" alt="العربية" width="215" /> | <img src="assets/images/Clasificacion.jpeg" alt="APK" width="215" /> |
-
-</div>
+Cinemapedia (paquete `com.example.cinemapedia`) está configurada en Appetize.io con la versión 0.1.0 para pruebas funcionales y demostración directamente desde el navegador.
 
 ## Funcionalidades
 
