@@ -47,3 +47,5 @@ Cada práctica incluye el código fuente, una breve descripción del objetivo de
 ## Manual de Flutter
 
 [Manual de Entorno Virtual en Flutter](/Manual_Flutter/README.md)
+
+[Manual de Entorno Virtual en Flutter](/Manual_Flutter/README.md)
