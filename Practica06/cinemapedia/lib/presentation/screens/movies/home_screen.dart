@@ -1,98 +1,78 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import 'package:cinemapedia/presentation/providers/providers.dart';
 import 'package:cinemapedia/presentation/widgets/widgets.dart';
+import 'package:cinemapedia/presentation/views/views.dart';
 
-class HomeScreen extends StatelessWidget {
+
+
+class HomeScreen extends StatefulWidget {
+
   static const name = 'home-screen';
+  final int pageIndex;
 
-  const HomeScreen({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return const Scaffold(
-      body: _HomeView(),
-      bottomNavigationBar: CustomBottomNavigation(),
-    );
-  }
-}
-
-class _HomeView extends ConsumerStatefulWidget {
-  const _HomeView();
+  const HomeScreen({
+    super.key, 
+    required this.pageIndex
+  });
 
   @override
-  _HomeViewState createState() => _HomeViewState();
+  State<HomeScreen> createState() => _HomeScreenState();
 }
 
-class _HomeViewState extends ConsumerState<_HomeView> {
+//* Este Mixin es necesario para mantener el estado en el PageView
+class _HomeScreenState extends State<HomeScreen> with AutomaticKeepAliveClientMixin {
+
+  late PageController pageController;
+
   @override
   void initState() {
     super.initState();
-    ref.read(nowPlayingMoviesProvider.notifier).loadNextPage();
-    ref.read(popularMoviesProvider.notifier).loadNextPage();
-    ref.read(topRatedMoviesProvider.notifier).loadNextPage();
-    ref.read(upcomingMoviesProvider.notifier).loadNextPage();
+    pageController = PageController(
+      keepPage: true
+    );
   }
 
   @override
+  void dispose() {
+    pageController.dispose();
+    super.dispose();
+  }
+
+  final viewRoutes =  const <Widget>[
+    HomeView(),
+    PopularView(), // <--- categorias View
+    FavoritesView(),
+  ];
+
+  @override
   Widget build(BuildContext context) {
-    final slideShowMovies = ref.watch(moviesSlideshowProvider);
-    final nowPlayingMovies = ref.watch(nowPlayingMoviesProvider);
-    final popularMovies = ref.watch(popularMoviesProvider);
-    final topRatedMovies = ref.watch(topRatedMoviesProvider);
-    final upcomingMovies = ref.watch(upcomingMoviesProvider);
+    super.build(context);
 
-    return CustomScrollView(
-      slivers: [
-        const SliverAppBar(
-          floating: true,
-          flexibleSpace: FlexibleSpaceBar(
-            title: CustomAppbar(),
-          ),
-        ),
-        SliverList(
-          delegate: SliverChildBuilderDelegate(
-            (context, index) {
-              return Column(
-                children: [
-                  MoviesSlideshow(movies: slideShowMovies),
+    if ( pageController.hasClients ) {
+      pageController.animateToPage(
+        widget.pageIndex, 
+        curve: Curves.easeInOut, 
+        duration: const Duration( milliseconds: 250),
+      );
+    }
 
-                  MovieHorizontalListview(
-                    movies: nowPlayingMovies,
-                    title: 'En cines',
-                    subTitle: 'Lunes 20',
-                    loadNextPage: () => ref.read(nowPlayingMoviesProvider.notifier).loadNextPage(),
-                  ),
-
-                  MovieHorizontalListview(
-                    movies: upcomingMovies,
-                    title: 'Próximamente',
-                    subTitle: 'En este mes',
-                    loadNextPage: () => ref.read(upcomingMoviesProvider.notifier).loadNextPage(),
-                  ),
-
-                  MovieHorizontalListview(
-                    movies: popularMovies,
-                    title: 'Populares',
-                    loadNextPage: () => ref.read(popularMoviesProvider.notifier).loadNextPage(),
-                  ),
-
-                  MovieHorizontalListview(
-                    movies: topRatedMovies,
-                    title: 'Mejor calificadas',
-                    subTitle: 'Desde siempre',
-                    loadNextPage: () => ref.read(topRatedMoviesProvider.notifier).loadNextPage(),
-                  ),
-
-                  const SizedBox(height: 10),
-                ],
-              );
-            },
-            childCount: 1,
-          ),
-        ),
-      ],
+    return Scaffold(
+      //* Menú lateral con el selector de idioma (se abre con swipe desde el borde)
+      drawer: const SideMenu(),
+      body: PageView(
+        //* Esto evitará que rebote 
+        physics: const NeverScrollableScrollPhysics(),
+        controller: pageController,
+        // index: pageIndex,
+        children: viewRoutes,
+      ),
+      bottomNavigationBar: CustomBottomNavigation( 
+        currentIndex: widget.pageIndex,
+      ),
     );
   }
+  
+  @override
+  bool get wantKeepAlive => true;
 }
+

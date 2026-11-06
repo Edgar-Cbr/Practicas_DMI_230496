@@ -1,140 +1,142 @@
-# Práctica 06 - Cinemapedia (Clean Architecture, The Movie DB & Riverpod)
+<div align="center">
 
-Aplicación cinematográfica en Flutter implementando **Clean Architecture** (Capa de Dominio, Infraestructura y Presentación), consumo de la API de **The Movie Database (TMDb)** mediante **Dio**, gestión de estado reactiva con **Flutter Riverpod**, navegación declarativa con **GoRouter**, gestión segura de secretos con **flutter_dotenv** y diseño visual moderno **Material Design 3**.
+<img src="assets/icon/app_icon.png" alt="Icono de Cinemapedia" width="150" />
 
----
+# Cinemapedia
 
-## Información del Estudiante y la Materia
+**Tu enciclopedia de cine, en una sola app.**  
+Descubre qué hay en cines, qué viene pronto y qué películas son las mejor calificadas, en 5 idiomas.
 
-| Información de la Materia | Datos del Estudiante |
-|:--|:--|
-| <table><tr><th>Campo</th><th>Detalle</th></tr><tr><td><b>Materia</b></td><td>Desarrollo Móvil Integral</td></tr><tr><td><b>Carrera</b></td><td>Ingeniería en Desarrollo y Gestión de Software</td></tr><tr><td><b>Docente</b></td><td>M.T.I. Marco A. Ramírez Hernández</td></tr><tr><td><b>Periodo</b></td><td>Septiembre - Diciembre</td></tr></table> | <table><tr><th>Campo</th><th>Detalle</th></tr><tr><td><b>Nombre</b></td><td>Edgar Cabrera</td></tr><tr><td><b>Matrícula</b></td><td>230496</td></tr><tr><td><b>Grupo</b></td><td>10 A°</td></tr><tr><td><b>Correo</b></td><td>230496@utxicotepec.edu.mx</td></tr></table> |
+![Flutter](https://img.shields.io/badge/Flutter-3.x-02569B?logo=flutter&logoColor=white)
+![Dart](https://img.shields.io/badge/Dart-3.10+-0175C2?logo=dart&logoColor=white)
+![Riverpod](https://img.shields.io/badge/Estado-Riverpod-8C5A9B)
+![Plataformas](https://img.shields.io/badge/Plataformas-Windows%20%7C%20Android%20%7C%20iOS-5F3A70)
+![Idiomas](https://img.shields.io/badge/Idiomas-ES%20%7C%20EN%20%7C%20DE%20%7C%20ZH%20%7C%20AR-A97DBB)
 
----
+</div>
 
-## Objetivo de la Práctica
+## Sobre la app
 
-Desarrollar una aplicación móvil robusta y escalable bajo los principios de **Clean Architecture**, integrando:
-- **Capa de Dominio**: Entidades puras y contratos abstractos independientes de librerías y fuentes externas.
-- **Capa de Infraestructura**: Consumo real de la API de TMDb (`/movie/now_playing`) mediante `Dio`, deserialización de modelos JSON (`MovieDbResponse`, `MovieMovieDB`), mapeo a entidades de negocio (`MovieMapper`) e implementación del repositorio (`MovieRepositoryImpl`).
-- **Capa de Presentación con Riverpod**: Configuración de `ProviderScope`, creación de proveedores de repositorio (`movieRepositoryProvider`) y estado (`nowPlayingMoviesProvider`), implementación del ciclo de vida en `ConsumerStatefulWidget` para carga asíncrona paginada y renderizado reactivo con `ListView.builder`.
-- **Configuración Global**: Seguridad de credenciales con `.env`, navegación centralizada con `GoRouter` y tematización dinámica Material 3.
+**Cinemapedia** es una aplicación multiplataforma desarrollada con Flutter que consume la API de [The Movie DB](https://www.themoviedb.org/). Permite explorar las películas en cartelera, próximos estrenos, películas más populares y mejor calificadas, visualizando el detalle de cada película con su sinopsis, reparto de actores, tráilers de YouTube y películas similares.
 
----
+La app cuenta con **soporte multi-idioma para 5 regiones**:
+- 🇲🇽 **Español (México)**
+- 🇺🇸 **Inglés (Estados Unidos)**
+- 🇩🇪 **Alemán (Alemania)**
+- 🇨🇳 **Chino (China)**
+- 🇪🇬 **Árabe (Egipto)**
 
-## Tecnologías y Librerías Utilizadas
+El idioma se puede cambiar dinámicamente desde el menú lateral (`SideMenu`), traduciendo tanto las cadenas de la interfaz como los datos obtenidos de la API de TMDB.
 
-- **Flutter SDK (`^3.13.3+`)**: Framework multiplataforma para desarrollo móvil.
-- **Dart**: Lenguaje fuertemente tipado.
-- **Dio (`^5.11.1`)**: Cliente HTTP para solicitudes a TMDb con parámetros base configurados.
-- **Flutter Riverpod (`^3.4.3`)**: Gestor de estado reactivo, inmutable y desacoplado del contexto de Flutter.
-- **flutter_dotenv (`^6.0.1`)**: Carga segura de variables de entorno desde `.env`.
-- **go_router (`^18.1.1`)**: Enrutador declarativo para navegación por URLs y nombres de ruta.
-- **Material Design 3**: Directrices de diseño visual con soporte de `colorSchemeSeed`.
+## Nuevo Logotipo e Identidad Visual
 
----
+Para esta entrega se diseñó un **nuevo logotipo e identidad visual** denominado **"Cinematic Nexus"**:
+- **Emblema central:** Prisma de reproducción ("Play") luminoso con degradados en tonos cian, violeta y fucsia cinematográfico.
+- **Escudo exterior:** Polígono hexagonal facetado con muescas superiores de claqueta de cine.
+- **Animación:** Renderizado vectorial mediante `CustomPainter` en [`CinemapediaLogo`](./lib/presentation/widgets/shared/cinemapedia_logo.dart) con soporte de `progress`, trazando el escudo y encendiendo el prisma de reproducción de forma fluida durante el `SplashScreen`.
+- **Iconos generados:** Disponible en alta resolución (`1024x1024`), variantes de primer plano (`ic_launcher_foreground`), iconos monocromáticos y mipmaps completos para Android, Web y macOS.
+
+## Capturas de Pantalla
+
+<div align="center">
+
+| Pantalla de carga | Inicio y navegación | Menú Lateral |
+| :---: | :---: | :---: |
+| <img src="assets/images/LoadScreen.gif" alt="Pantalla de carga" width="215" /> | <img src="assets/images/Inicio.jpeg" alt="Inicio" width="215" /> | <img src="assets/images/Menu.jpeg" alt="Menú lateral" width="215" /> |
+
+| Detalles de Película | Elenco | Favoritos |
+| :---: | :---: | :---: |
+| <img src="assets/images/Descripcion.jpeg" alt="Detalle" width="215" /> | <img src="assets/images/Elenco.jpeg" alt="Elenco" width="215" /> | <img src="assets/images/Favoritos.jpeg" alt="Favoritos" width="215" /> |
+
+</div>
+
+### Soporte Multi-idioma
+
+<div align="center">
+
+| MX (Español) | US (English) | DE (Deutsch) |
+| :---: | :---: | :---: |
+| <img src="assets/images/Inicio.jpeg" alt="Español" width="215" /> | <img src="assets/images/English.jpeg" alt="English" width="215" /> | <img src="assets/images/Aleman.jpeg" alt="Deutsch" width="215" /> |
+
+| CN (中文) | EG (العربية) | Clasificación |
+| :---: | :---: | :---: |
+| <img src="assets/images/Chino.jpeg" alt="中文" width="215" /> | <img src="assets/images/Arabe.jpeg" alt="العربية" width="215" /> | <img src="assets/images/Clasificacion.jpeg" alt="Clasificación" width="215" /> |
+
+</div>
+
+## Funcionalidades Principales
+
+- **Pantalla de Splash Animada:** Logotipo vectorial interactivo que se dibuja en pantalla con zoom cinematográfico hacia la interfaz principal.
+- **Carrusel de Estrenos Interactivo:** 
+  - Muestra imagen de fondo con degradado, título y descripción corta.
+  - **Navegación con flechas:**
+    - **1 clic:** Avanza o retrocede 1 película.
+    - **Doble clic:** Salta directamente al inicio (película 1) o al final (última película).
+- **Listas Horizontales Infinitas:** Secciones *En cines*, *Próximamente* y *Mejor calificadas* con paginación automática y debounce.
+- **Vista de Cuadrícula (Masonry):** Pestaña de películas Populares con diseño escalonado.
+- **Detalle de Película Completo:** Sinopsis, géneros, reparto con foto de actores, tráilers de YouTube embebidos, clasificación por edad según el país y recomendaciones de películas similares.
+- **Búsqueda en Tiempo Real:** Delegado de búsqueda con debouncer de 500ms y sugerencias interactivas.
+- **Favoritos Locales:** Almacenamiento local persistente con base de datos NoSQL **Isar Community**.
+- **Menú Lateral (`Drawer`):** Selector interactivo con banderas para cambiar de idioma al instante.
 
 ## Arquitectura del Proyecto
 
-```
-Practica06/cinemapedia/
-├── .env.template                   # Plantilla de variables de entorno requeridas
-├── .env                            # Archivo local con la API Key (ignorado en git)
-├── lib/
-│   ├── config/                     # Configuraciones globales de la aplicación
-│   │   ├── constants/
-│   │   │   └── environment.dart    # Acceso estático y seguro a variables de entorno
-│   │   ├── router/
-│   │   │   └── app_router.dart     # Definición de rutas y navegación con GoRouter
-│   │   └── theme/
-│   │       └── app_theme.dart      # Configuración de tema global Material 3
-│   ├── domain/                     # Capa de Dominio (Reglas de negocio puras)
-│   │   ├── datasources/
-│   │   │   └── movies_datasource.dart   # Contrato abstracto para fuentes de datos
-│   │   ├── entities/
-│   │   │   └── movie.dart               # Entidad Movie nuclear de la aplicación
-│   │   └── repositories/
-│   │       └── movies_repository.dart   # Contrato abstracto del repositorio de películas
-│   ├── infrastructure/             # Capa de Infraestructura (Implementaciones externas)
-│   │   ├── datasources/
-│   │   │   └── moviedb_datasource.dart  # Implementación de TMDb API mediante Dio
-│   │   ├── mappers/
-│   │   │   └── movie_mapper.dart        # Adaptador de modelos de API a entidades de negocio
-│   │   ├── models/moviedb/
-│   │   │   ├── movie_moviedb.dart       # Modelo individual de película devuelta por TMDb
-│   │   │   └── moviedb_response.dart    # Respuesta paginada de la API de TMDb
-│   │   └── repositories/
-│   │       └── movie_repository_impl.dart # Implementación concreta del repositorio
-│   ├── presentation/               # Capa de Presentación (UI y Estado)
-│   │   ├── providers/              # Gestores de estado con Riverpod
-│   │   │   ├── movies/
-│   │   │   │   ├── movies_providers.dart           # StateNotifierProvider de películas en cartelera
-│   │   │   │   └── movies_repository_provider.dart # Provider inmutable del repositorio
-│   │   │   └── providers.dart                      # Archivo barril de providers
-│   │   └── screens/                # Vistas y pantallas
-│   │       ├── movies/
-│   │       │   └── home_screen.dart     # Pantalla que consume Riverpod y lista películas
-│   │       └── screens.dart             # Archivo barril de pantallas
-│   └── main.dart                   # Punto de entrada, carga de .env y ProviderScope
-├── test/
-│   └── widget_test.dart            # Pruebas unitarias de la entidad Movie
-└── pubspec.yaml                    # Dependencias y registro de assets
-```
+El proyecto sigue los principios de **Clean Architecture** dividiéndose en capas desacopladas:
+1. **Dominio:** Entidades (`Movie`, `Actor`, `Video`) y contratos de fuentes de datos y repositorios.
+2. **Infraestructura:** Modelos de API (`The Movie DB`), mappers y datasources concretos (HTTP con Dio y local con Isar).
+3. **Presentación:** Pantallas, vistas, widgets modulares y gestores de estado con **Riverpod**.
 
----
+El diagrama interactivo de arquitectura se encuentra disponible en:
+- [`../Arquitectura/Arquitectura_de_Cinemapedia.html`](../Arquitectura/Arquitectura_de_Cinemapedia.html)
 
-## Componentes Implementados
+<div align="center">
 
-### 1. Capa de Dominio
-- **`Movie`** (`lib/domain/entities/movie.dart`): Entidad pura con atributos esenciales de la película (`id`, `title`, `overview`, `posterPath`, `backdropPath`, `voteAverage`, etc.).
-- **`MoviesDatasource`** & **`MoviesRepository`**: Interfaces que definen los métodos de acceso a datos sin acoplar la aplicación a ningún backend o librería específica:
-  ```dart
-  abstract class MoviesDatasource {
-    Future<List<Movie>> getNowPlaying({ int page = 1 });
-  }
-  ```
+<img src="../Arquitectura/Arquitectura-Cinemapedia-dark.png" alt="Diagrama de Arquitectura de Cinemapedia" width="900" />
 
-### 2. Capa de Infraestructura
-- **`MoviedbDatasource`**: Conexión a la API `https://api.themoviedb.org/3/movie/now_playing` con idioma `es-MX`.
-- **`MovieMapper`**: Convierte objetos `MovieMovieDB` a la entidad `Movie`, resolviendo rutas completas de imágenes y valores predeterminados para evitar campos rotos o vacíos.
-- **`MovieRepositoryImpl`**: Delega la obtención de películas al datasource provisto, facilitando el intercambio de fuentes de datos (ej. caché local o base de datos).
+</div>
 
-### 3. Capa de Presentación (Riverpod)
-- **`movieRepositoryProvider`**: Expone una única instancia inmutable de `MovieRepositoryImpl`.
-- **`nowPlayingMoviesProvider`**: Gestiona la lista acumulativa de películas en memoria y provee el método `loadNextPage()` para realizar solicitudes paginadas subsecuentes.
-- **`HomeScreen` (`_HomeView`)**: `ConsumerStatefulWidget` que en su `initState` invoca la carga inicial (`ref.read(...).loadNextPage()`) y mediante `ref.watch(nowPlayingMoviesProvider)` redibuja un `ListView.builder` dinámicamente con los títulos de las películas en cartelera.
-- **`main.dart`**: Envuelve la raíz de la aplicación con `ProviderScope`.
+## Tecnologías Utilizadas
 
----
+| Categoría | Paquete / Tecnología |
+| :--- | :--- |
+| **Gestión de Estado** | `flutter_riverpod` (v2.6.1) |
+| **Enrutamiento** | `go_router` (v17.5.0) |
+| **Cliente HTTP** | `dio` (v5.11.1) |
+| **Base de Datos Local** | `isar_community` / `isar_community_flutter_libs` (v3.4.1) |
+| **Carrusel** | `card_swiper` (v3.0.1) |
+| **Animaciones** | `animate_do` (v4.2.0) |
+| **Cuadrícula** | `flutter_staggered_grid_view` (v0.7.0) |
+| **Reproductor de Video** | `youtube_player_flutter` (v10.0.1) |
+| **Variables de Entorno** | `flutter_dotenv` (v5.2.1) |
+| **Localización e Idiomas** | `flutter_localizations` e `intl` (v0.20.2) |
 
-## Instrucciones de Instalación y Ejecución
+## Configuración y Ejecución
 
-1. Navegar al directorio del proyecto:
+1. Clonar el repositorio y ubicarse en el directorio del proyecto:
    ```bash
    cd Practica06/cinemapedia
    ```
 
-2. Configurar el archivo de variables de entorno:
-   - Duplicar el archivo `.env.template` como `.env`:
-     ```bash
-     cp .env.template .env
-     ```
-   - Asignar una clave válida de The Movie DB:
-     ```env
-     THE_MOVIEDB_KEY=tu_api_key_aqui
-     ```
+2. Configurar la clave de API en `.env`:
+   ```env
+   THE_MOVIEDB_KEY=tu_api_key_de_the_moviedb
+   ```
 
-3. Instalar las dependencias de Flutter:
+3. Obtener las dependencias:
    ```bash
    flutter pub get
    ```
 
-4. Ejecutar la suite de pruebas unitarias:
-   ```bash
-   flutter test
-   ```
-
-5. Iniciar la aplicación en emulador o dispositivo físico:
+4. Ejecutar la aplicación:
    ```bash
    flutter run
    ```
+
+## Estudiante y Créditos
+
+- **Estudiante:** Edgar Cabrera
+- **Matrícula:** 230496
+- **Carrera:** Ingeniería en Desarrollo y Gestión de Software
+- **Materia:** Desarrollo Móvil Integral
+- **Docente:** M.T.I. Marco A. Ramírez Hernández
+- **Datos de Películas:** Proporcionados por [The Movie DB API](https://www.themoviedb.org/).
