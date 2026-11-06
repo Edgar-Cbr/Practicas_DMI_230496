@@ -2,11 +2,8 @@
 
 <p align="center">
   <strong>Ingeniería en Desarrollo y Gestión de Software</strong><br>
-  <em>"Construyendo aplicaciones móviles multiplataforma con Flutter, del primer widget al despliegue final."</em>
-</p>
-
-<p align="center">
-  <img src="./flutter.png" alt="Flutter Logo" width="250"/>
+  <em>"Construyendo aplicaciones móviles multiplataforma con Flutter, del primer widget al despliegue final."</em><br><br>
+  <img src="/flutter.png" alt="Flutter Logo" width="250"/>
 </p>
 
 <p align="center">
@@ -28,20 +25,25 @@ Cada práctica incluye el código fuente, una breve descripción del objetivo de
 
 ## Información de la materia y el estudiante
 
-| Información de la Materia | Datos del Estudiante |
-|:--|:--|
-| <table><tr><th>Campo</th><th>Detalle</th></tr><tr><td><b>Materia</b></td><td>Desarrollo Móvil Integral</td></tr><tr><td><b>Carrera</b></td><td>Ingeniería en Desarrollo y Gestión de Software</td></tr><tr><td><b>Docente</b></td><td>M.T.I. Marco A. Ramírez Hernández</td></tr><tr><td><b>Periodo</b></td><td>Septiembre - Diciembre</td></tr></table> | <table><tr><th>Campo</th><th>Detalle</th></tr><tr><td><b>Nombre</b></td><td>Edgar Cabrera</td></tr><tr><td><b>Matrícula</b></td><td>230496</td></tr><tr><td><b>Grupo</b></td><td>10 A°</td></tr><tr><td><b>Correo</b></td><td>230496@utxicotepec.edu.mx</td></tr></table> |
-
+| Materia | Detalle | Estudiante | Detalle |
+|:--|:--|:--|:--|
+| **Materia** | Desarrollo Móvil Integral | **Nombre** | Edgar Cabrera |
+| **Carrera** | Ingeniería en Desarrollo y Gestión de Software | **Matrícula** | 230496 |
+| **Docente** | M.T.I. Marco A. Ramírez Hernández | **Grupo** | 10 A° |
+| **Periodo** | Septiembre - Diciembre | **Correo** | 230496@utxicotepec.edu.mx |
 
 ## Tabla de Prácticas de la Materia
 
-| No. | Nombre                                  | Descripción                                                                 | Potenciador | Estatus       |
-|:---:|:----------------------------------------|:-----------------------------------------------------------------------------|:-----------:|:-------------:|
-| 01  | Metodologia de Evaluacion de la Materia | Revisión de la forma en que se evaluará la materia durante el cuatrimestre. |     05      | 🟢 Completada |
-| 02  | [Mi Primer Aplicaccion Movil con Flutter](./Practica02/flutter_application_1/README.md) | App contador con botones para sumar, restar y reiniciar, con colores según el valor. |     25      | 🟢 Completada |
-| 03  | [Yes, No, Maybe](./Practica03/yes_no_app/README.md) | Chat Flutter con respuestas automáticas y GIFs mediante la API yesno.wtf. |     30      | 🟢 Completada |
-| 04  | [TokTik](./Practica04/toktik/README.md)| App de reproducción de videos verticales con providers, YouTube, GIPHY, Dailymotion y tematización temporal (Halloween, Navidad y San Valentín). |     30      | 🟢 Completada |
-| 04  | [Appetize - TokTik & Pokédex](./Practica04/appetize/README.md) | Publicación y pruebas funcionales de TokTik v1.0.0 y Pokédex Mini en Appetize (accesible en [`Practica04/appetize`](./Practica04/appetize/README.md) y [`Practica-Appetize`](./Practica-Appetize/README.md)). |     --      | 🟢 Completada |
-| 05  | [Widgets App](./Practica05/widgets_app/README.md) | Catálogo interactivo de componentes y widgets en Flutter con Riverpod, GoRouter, animaciones y tematización dinámica Material 3. |     35      | 🟢 Completada |
-| 06  | [Cinemapedia](./Practica06/cinemapedia/README.md) | App Flutter de películas con The Movie DB: cartelera, estrenos y mejor calificadas, carrusel con flechas de 1 y doble clic, detalle con reparto y tráilers de YouTube, búsqueda, soporte multi-idioma (5 regiones), favoritos locales con Isar, nuevo logotipo e identidad visual, pantalla de splash animada y arquitectura Clean Architecture. |     --      | 🟢 Completada |
-
+| No. | Nombre | Descripción | Potenciador | Estatus |
+|:-:|:--|:--|:-:|:-:|
+| 01 | Metodología de Evaluación de la Materia | Revisión de la forma en que se evaluará la materia durante el cuatrimestre. | 05 | 🟢 Completada |
+| 02 | [Mi Primera Aplicación Móvil con Flutter](/Practica02/flutter_application_1/README.md) | App contador con botones para sumar, restar y reiniciar, con colores según el valor. | 25 | 🟢 Completada |
+| 03 | [Yes, No, Maybe](/Practica03/yes_no_app/README.md) | Chat Flutter con respuestas automáticas y GIFs mediante la API yesno.wtf. | 30 | 🟢 Completada |
+| 04 | [TokTik](/Practica04/toktik/README.md) | El alumno creará una app de reproducción de videos verticales con el uso de providers y tematización temporal a Halloween y Navidad. | 30 | 🟢 Completada |
+| 4.1 | [Appetize - TokTik](/Practica-Appetize/README.md) | App Flutter - TokTik: reproducción de videos verticales con providers y tematización temporal a Halloween y Navidad. | 10 | 🟢 Completada |
+| 05 | [Widgets App](/Practica05/widgets_app/README.md) | App Flutter con widgets Material 3, navegación con GoRouter y estado con Riverpod: botones, tarjetas, progreso, controles, animaciones, lista con actualización, contador y temas. | 40 | 🟢 Completada |
+| 06 | [Cinemapedia](/Practica06/cinemapedia/README.md) | App Flutter de películas con la API de The Movie DB: cartelera, estrenos y mejor calificadas, carrusel con flechas de 1 y doble clic, detalle con reparto y tráilers, búsqueda y favoritos locales (Isar). Usa GoRouter, Riverpod, nuevo logotipo animado y tema negro con acentos cinematográficos. | -- | 🟢 Completada |
+
+## Manual de Flutter
+
+[Manual de Entorno Virtual en Flutter](/Manual_Flutter/README.md)
