@@ -4,8 +4,8 @@ import 'package:go_router/go_router.dart';
 import 'package:cinemapedia/presentation/widgets/shared/cinemapedia_logo.dart';
 
 /// Pantalla de carga inicial al estilo de las apps de streaming:
-/// fondo negro, la "C" se dibuja, aparece el nombre y luego hace zoom
-/// hacia la pantalla principal.
+/// fondo oscuro cinematográfico, el logo se dibuja progresivamente,
+/// aparece el nombre con brillo y luego hace un suave zoom hacia la app principal.
 class SplashScreen extends StatefulWidget {
   static const name = 'splash-screen';
 
@@ -31,7 +31,7 @@ class _SplashScreenState extends State<SplashScreen>
 
     _controller = AnimationController(
       vsync: this,
-      duration: const Duration(milliseconds: 3400),
+      duration: const Duration(milliseconds: 3200),
     );
 
     _draw = CurvedAnimation(
@@ -72,7 +72,7 @@ class _SplashScreenState extends State<SplashScreen>
     final colors = Theme.of(context).colorScheme;
 
     return Scaffold(
-      backgroundColor: Colors.black,
+      backgroundColor: const Color(0xFF090A10),
       body: Center(
         child: AnimatedBuilder(
           animation: _controller,
@@ -88,16 +88,31 @@ class _SplashScreenState extends State<SplashScreen>
                       scale: _popIn.value,
                       child: CinemapediaLogo(size: 130, progress: _draw.value),
                     ),
-                    const SizedBox(height: 18),
+                    const SizedBox(height: 20),
                     Opacity(
                       opacity: _titleFade.value,
-                      child: Text(
-                        'CINEMAPEDIA',
-                        style: TextStyle(
-                          color: colors.onSurface,
-                          fontSize: 18,
-                          fontWeight: FontWeight.w600,
-                          letterSpacing: 6,
+                      child: RichText(
+                        text: TextSpan(
+                          children: [
+                            const TextSpan(
+                              text: 'CINEMA',
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 20,
+                                fontWeight: FontWeight.w900,
+                                letterSpacing: 6,
+                              ),
+                            ),
+                            TextSpan(
+                              text: 'PEDIA',
+                              style: TextStyle(
+                                color: colors.primary,
+                                fontSize: 20,
+                                fontWeight: FontWeight.w900,
+                                letterSpacing: 6,
+                              ),
+                            ),
+                          ],
                         ),
                       ),
                     ),
