@@ -21,7 +21,7 @@ class AppStrings {
 
   static const LocalizationsDelegate<AppStrings> delegate = _AppStringsDelegate();
 
-  static const supportedCodes = ['es', 'en', 'de', 'zh', 'ar'];
+  static const supportedCodes = ['es', 'en', 'de', 'fr', 'ja'];
 
   String _t(String key) =>
       _values[languageCode]?[key] ?? _values['es']![key] ?? key;
@@ -65,6 +65,18 @@ class AppStrings {
   String get language => _t('language');
   String get chooseLanguage => _t('chooseLanguage');
 
+  // ---- Configuración, películas y series
+  String get settings => _t('settings');
+  String get content => _t('content');
+  String get chooseContent => _t('chooseContent');
+  String get movies => _t('movies');
+  String get series => _t('series');
+  String get seriesOnAir => _t('seriesOnAir');
+  String get airingToday => _t('airingToday');
+  String get airingTodaySub => _t('airingTodaySub');
+  String get searchSeries => _t('searchSeries');
+  String get noFavSeriesBody => _t('noFavSeriesBody');
+
   static const Map<String, Map<String, String>> _values = {
 
     // ------------------------------------------------------------ Español
@@ -100,6 +112,16 @@ class AppStrings {
       'menu': 'Menú',
       'language': 'Idioma',
       'chooseLanguage': 'Elige el idioma de la app y de las películas',
+      'settings': 'Configuración',
+      'content': 'Contenido',
+      'chooseContent': 'Elige qué quieres ver',
+      'movies': 'Películas',
+      'series': 'Series',
+      'seriesOnAir': 'En emisión',
+      'airingToday': 'Se emiten hoy',
+      'airingTodaySub': 'Episodios nuevos',
+      'searchSeries': 'Buscar series',
+      'noFavSeriesBody': 'No tienes series favoritas',
     },
 
     // ------------------------------------------------------------ English
@@ -135,6 +157,16 @@ class AppStrings {
       'menu': 'Menu',
       'language': 'Language',
       'chooseLanguage': 'Choose the language of the app and the movies',
+      'settings': 'Settings',
+      'content': 'Content',
+      'chooseContent': 'Choose what you want to watch',
+      'movies': 'Movies',
+      'series': 'Series',
+      'seriesOnAir': 'On the air',
+      'airingToday': 'Airing today',
+      'airingTodaySub': 'New episodes',
+      'searchSeries': 'Search series',
+      'noFavSeriesBody': "You don't have any favorite series",
     },
 
     // ------------------------------------------------------------ Deutsch
@@ -170,76 +202,106 @@ class AppStrings {
       'menu': 'Menü',
       'language': 'Sprache',
       'chooseLanguage': 'Wähle die Sprache der App und der Filme',
+      'settings': 'Einstellungen',
+      'content': 'Inhalt',
+      'chooseContent': 'Wähle, was du sehen möchtest',
+      'movies': 'Filme',
+      'series': 'Serien',
+      'seriesOnAir': 'Läuft aktuell',
+      'airingToday': 'Heute im TV',
+      'airingTodaySub': 'Neue Folgen',
+      'searchSeries': 'Serien suchen',
+      'noFavSeriesBody': 'Du hast noch keine Lieblingsserien',
     },
 
-    // ------------------------------------------------------------ 中文
-    'zh': {
-      'home': '首页',
-      'popular': '热门',
-      'favorites': '收藏',
-      'nowPlaying': '正在热映',
-      'upcoming': '即将上映',
-      'upcomingSub': '本月',
-      'topRated': '评分最高',
-      'topRatedSub': '历史榜单',
-      'previous': '上一部',
-      'next': '下一部',
-      'releaseDate': '上映日期：',
-      'ageRating': '年龄分级：',
-      'recommendations': '推荐',
-      'videos': '视频',
-      'similarError': '无法加载相似电影',
-      'videosError': '无法加载视频',
-      'searchMovies': '搜索电影',
-      'noFavTitle': '哎呀！',
-      'noFavBody': '你还没有收藏的电影',
-      'startSearching': '开始搜索',
-      'pleaseWait': '请稍候',
-      'loading': '加载中...',
-      'loading1': '正在整理最新上映与首映片单...',
-      'loading2': '正在准备爆米花与冷饮...',
-      'loading3': '正在校准全景音效与数字放映机...',
-      'loading4': '正在挑选影厅最佳观影座位...',
-      'loading5': '影厅灯光渐暗，请保持安静...',
-      'loading6': '请入座，精彩电影马上开场...',
-      'menu': '菜单',
-      'language': '语言',
-      'chooseLanguage': '选择应用和电影的语言',
+    // ------------------------------------------------------------ Français
+    'fr': {
+      'home': 'Accueil',
+      'popular': 'Populaires',
+      'favorites': 'Favoris',
+      'nowPlaying': 'Au cinéma',
+      'upcoming': 'Prochainement',
+      'upcomingSub': 'Ce mois-ci',
+      'topRated': 'Mieux notés',
+      'topRatedSub': 'De tous les temps',
+      'previous': 'Précédent',
+      'next': 'Suivant',
+      'releaseDate': 'Date de sortie :',
+      'ageRating': 'Classification :',
+      'recommendations': 'Recommandations',
+      'videos': 'Vidéos',
+      'similarError': 'Impossible de charger des films similaires',
+      'videosError': 'Impossible de charger les vidéos',
+      'searchMovies': 'Rechercher des films',
+      'noFavTitle': 'Oh non !',
+      'noFavBody': "Vous n'avez pas de films favoris",
+      'startSearching': 'Commencer la recherche',
+      'pleaseWait': 'Veuillez patienter',
+      'loading': 'Chargement...',
+      'loading1': "Préparation de l'affiche et des nouveautés...",
+      'loading2': 'Préparation du pop-corn et des boissons...',
+      'loading3': 'Calibrage du son surround et du projecteur...',
+      'loading4': 'Recherche des meilleures places de la salle...',
+      'loading5': 'Les lumières s\'éteignent, silence dans la salle !...',
+      'loading6': 'Installez-vous, la séance va commencer...',
+      'menu': 'Menu',
+      'language': 'Langue',
+      'chooseLanguage': "Choisissez la langue de l'application et des films",
+      'settings': 'Paramètres',
+      'content': 'Contenu',
+      'chooseContent': 'Choisissez ce que vous souhaitez regarder',
+      'movies': 'Films',
+      'series': 'Séries',
+      'seriesOnAir': 'En diffusion',
+      'airingToday': "Diffusées aujourd'hui",
+      'airingTodaySub': 'Nouveaux épisodes',
+      'searchSeries': 'Rechercher des séries',
+      'noFavSeriesBody': "Vous n'avez pas de séries favorites",
     },
 
-    // ------------------------------------------------------------ العربية
-    'ar': {
-      'home': 'الرئيسية',
-      'popular': 'الشائعة',
-      'favorites': 'المفضلة',
-      'nowPlaying': 'في دور العرض',
-      'upcoming': 'قريبًا',
-      'upcomingSub': 'هذا الشهر',
-      'topRated': 'الأعلى تقييمًا',
-      'topRatedSub': 'على مر العصور',
-      'previous': 'السابق',
-      'next': 'التالي',
-      'releaseDate': 'تاريخ الإصدار:',
-      'ageRating': 'التصنيف العمري:',
-      'recommendations': 'توصيات',
-      'videos': 'مقاطع الفيديو',
-      'similarError': 'تعذّر تحميل الأفلام المشابهة',
-      'videosError': 'تعذّر تحميل مقاطع الفيديو',
-      'searchMovies': 'ابحث عن فيلم',
-      'noFavTitle': 'يا للأسف!!',
-      'noFavBody': 'ليس لديك أفلام مفضلة',
-      'startSearching': 'ابدأ البحث',
-      'pleaseWait': 'يرجى الانتظار',
-      'loading': 'جارٍ التحميل...',
-      'loading1': 'جارٍ تجهيز شباك التذاكر وأحدث العروض...',
-      'loading2': 'جارٍ تحضير الفشار والمشروبات المنعشة...',
-      'loading3': 'جارٍ ضبط الصوت المحيطي وجهاز العرض...',
-      'loading4': 'جارٍ حجز أفضل مقاعد الصالة...',
-      'loading5': 'أضواء القاعة تنطفئ، هدوء من فضلكم!...',
-      'loading6': 'تفضل بالجلوس، العرض على وشك البدء...',
-      'menu': 'القائمة',
-      'language': 'اللغة',
-      'chooseLanguage': 'اختر لغة التطبيق والأفلام',
+    // ------------------------------------------------------------ 日本語
+    'ja': {
+      'home': 'ホーム',
+      'popular': '人気作品',
+      'favorites': 'お気に入り',
+      'nowPlaying': '劇場公開中',
+      'upcoming': 'もうすぐ公開',
+      'upcomingSub': '今月公開',
+      'topRated': '高評価作品',
+      'topRatedSub': '歴代の名作',
+      'previous': '前へ',
+      'next': '次へ',
+      'releaseDate': '公開日：',
+      'ageRating': 'レーティング：',
+      'recommendations': 'おすすめ作品',
+      'videos': '予告編・映像',
+      'similarError': '関連作品を読み込めませんでした',
+      'videosError': '動画を読み込めませんでした',
+      'searchMovies': '映画を検索',
+      'noFavTitle': 'おやっ！？',
+      'noFavBody': 'お気に入りの映画がまだありません',
+      'startSearching': '作品を検索する',
+      'pleaseWait': '少々お待ちください',
+      'loading': '読み込み中...',
+      'loading1': '上映スケジュールと最新作を準備中...',
+      'loading2': 'ポップコーンとドリンクをご用意しています...',
+      'loading3': 'サラウンド音響と映写機を調整中...',
+      'loading4': '劇場のベストシートを確保しています...',
+      'loading5': 'まもなく場内が暗くなります。お静かに！...',
+      'loading6': 'どうぞご着席ください。まもなく上映開始です...',
+      'menu': 'メニュー',
+      'language': '言語',
+      'chooseLanguage': 'アプリおよび映画の言語を選択',
+      'settings': '設定',
+      'content': 'コンテンツ',
+      'chooseContent': '視聴したい作品を選択',
+      'movies': '映画',
+      'series': 'ドラマ・アニメ',
+      'seriesOnAir': '現在放送中',
+      'airingToday': '本日放送',
+      'airingTodaySub': '最新エピソード',
+      'searchSeries': 'シリーズを検索',
+      'noFavSeriesBody': 'お気に入りのシリーズがまだありません',
     },
   };
 }

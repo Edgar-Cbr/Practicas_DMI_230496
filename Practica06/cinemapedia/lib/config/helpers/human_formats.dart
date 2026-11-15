@@ -13,7 +13,7 @@ class HumanFormats {
     ).format(number);
   }
 
-  /// Fecha corta en el idioma indicado (es, en, de, zh, ar).
+  /// Fecha corta en el idioma indicado (es, en, de, fr, ja).
   static String shortDate( DateTime date, [ String languageCode = 'es' ] ) {
     final format = DateFormat.yMMMEd(languageCode);
     return format.format(date);

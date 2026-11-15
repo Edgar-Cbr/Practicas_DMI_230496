@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 /// - [apiCode]: código que se envía a The Movie DB (`language=`).
 /// - [locale]: idioma que usa Flutter para textos, fechas y dirección (RTL).
 class AppLanguage {
-  final String country;      // MX, US, DE, CN, EG
+  final String country;      // MX, US, DE, FR, JP
   final String nativeName;   // Cómo se llama el idioma en su propio idioma
   final Locale locale;
 
@@ -42,20 +42,20 @@ class AppLanguages {
     locale: Locale('de', 'DE'),
   );
 
-  static const china = AppLanguage(
-    country: 'CN',
-    nativeName: '中文',
-    locale: Locale('zh', 'CN'),
+  static const france = AppLanguage(
+    country: 'FR',
+    nativeName: 'Français',
+    locale: Locale('fr', 'FR'),
   );
 
-  static const egypt = AppLanguage(
-    country: 'EG',
-    nativeName: 'العربية',
-    locale: Locale('ar', 'EG'),
+  static const japan = AppLanguage(
+    country: 'JP',
+    nativeName: '日本語',
+    locale: Locale('ja', 'JP'),
   );
 
   /// Orden en el que aparecen en el menú lateral.
-  static const all = <AppLanguage>[mexico, unitedStates, germany, china, egypt];
+  static const all = <AppLanguage>[mexico, unitedStates, germany, france, japan];
 
   static const defaultLanguage = mexico;
 }
