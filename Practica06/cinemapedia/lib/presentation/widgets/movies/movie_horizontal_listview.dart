@@ -99,28 +99,40 @@ class _Slide extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           
-          //* Imagen
+          //* Imagen con borde y sombra cinematográfica
           SizedBox(
             width: 150,
             child: AspectRatio(
               aspectRatio: 2 / 3,
-              child: ClipRRect(
-                borderRadius: BorderRadius.circular(20),
-                child: GestureDetector(
-                  onTap: () => context.push('/home/0/movie/${movie.id}'),
-                  child: FadeInImage(
-                    width: double.infinity,
-                    height: double.infinity,
-                    fit: BoxFit.cover,
-                    placeholder: const AssetImage('assets/loaders/bottle-loader.gif'),
-                    image: NetworkImage(movie.posterPath),
+              child: DecoratedBox(
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(18),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.black.withValues(alpha: 0.55),
+                      blurRadius: 10,
+                      offset: const Offset(0, 5),
+                    ),
+                  ],
+                ),
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(18),
+                  child: GestureDetector(
+                    onTap: () => context.push('/home/0/movie/${movie.id}'),
+                    child: FadeInImage(
+                      width: double.infinity,
+                      height: double.infinity,
+                      fit: BoxFit.cover,
+                      placeholder: const AssetImage('assets/loaders/bottle-loader.gif'),
+                      image: NetworkImage(movie.posterPath),
+                    ),
                   ),
                 ),
               ),
             ),
           ),
 
-          const SizedBox(height: 5),
+          const SizedBox(height: 8),
 
           //* Title
           SizedBox(
@@ -128,15 +140,20 @@ class _Slide extends StatelessWidget {
             child: Text(
               movie.title,
               maxLines: 2,
-              style: textStyles.titleSmall,
+              overflow: TextOverflow.ellipsis,
+              style: textStyles.titleSmall?.copyWith(
+                fontWeight: FontWeight.w600,
+                height: 1.2,
+              ),
             ),
           ),
+
+          const SizedBox(height: 4),
 
           //* Rating
           MovieRating(
             voteAverage: movie.voteAverage
           ),
-
 
         ],
       ),
@@ -151,31 +168,63 @@ class _Title extends StatelessWidget {
   final String? title;
   final String? subTitle;
 
-
   const _Title({ this.title, this.subTitle});
 
   @override
   Widget build(BuildContext context) {
 
-    final titleStyle = Theme.of(context).textTheme.titleLarge;
+    final colors = Theme.of(context).colorScheme;
+    final titleStyle = Theme.of(context).textTheme.titleLarge?.copyWith(
+      fontWeight: FontWeight.bold,
+      letterSpacing: 0.4,
+    );
 
     return Container(
-      padding: const EdgeInsets.only( top: 10),
-      margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 3),
+      padding: const EdgeInsets.only( top: 12 ),
+      margin: const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
       child: Row(
         children: [
           
+          //* Barra de acento con degradado
+          Container(
+            width: 4,
+            height: 20,
+            margin: const EdgeInsets.only(right: 8),
+            decoration: BoxDecoration(
+              gradient: LinearGradient(
+                begin: Alignment.topCenter,
+                end: Alignment.bottomCenter,
+                colors: [colors.primary, colors.secondary],
+              ),
+              borderRadius: BorderRadius.circular(2),
+            ),
+          ),
+
           if ( title != null )
             Text(title!, style: titleStyle ),
           
           const Spacer(),
 
           if ( subTitle != null )
-            FilledButton.tonal(
-              style: const ButtonStyle( visualDensity: VisualDensity.compact ),
-              onPressed: (){}, 
-              child: Text( subTitle! )
-          )
+            Container(
+              padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
+              decoration: BoxDecoration(
+                color: colors.primary.withValues(alpha: 0.14),
+                borderRadius: BorderRadius.circular(16),
+                border: Border.all(
+                  color: colors.primary.withValues(alpha: 0.35),
+                  width: 1,
+                ),
+              ),
+              child: Text(
+                subTitle!,
+                style: TextStyle(
+                  color: colors.primary,
+                  fontSize: 12,
+                  fontWeight: FontWeight.w600,
+                ),
+              ),
+            )
 
         ],
       ),

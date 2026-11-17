@@ -5,7 +5,6 @@ class MovieRating extends StatelessWidget {
 
   final double voteAverage; 
 
-
   const MovieRating({
     super.key,
     required this.voteAverage
@@ -13,19 +12,31 @@ class MovieRating extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    const starGold = Color(0xFFFBBF24);
 
-    final textStyles = Theme.of(context).textTheme;
-
-    return SizedBox(
-      width: 150,
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
+      decoration: BoxDecoration(
+        color: starGold.withValues(alpha: 0.12),
+        borderRadius: BorderRadius.circular(8),
+        border: Border.all(
+          color: starGold.withValues(alpha: 0.25),
+          width: 0.8,
+        ),
+      ),
       child: Row(
+        mainAxisSize: MainAxisSize.min,
         children: [
-          Icon(Icons.star_half_outlined, color: Colors.yellow.shade800),
+          const Icon(Icons.star_rounded, color: starGold, size: 14),
           const SizedBox(width: 3),
-          Text(HumanFormats.number(voteAverage, 1),
-              style: textStyles.bodyMedium
-                  ?.copyWith(color: Colors.yellow.shade800)),
-          
+          Text(
+            HumanFormats.number(voteAverage, 1),
+            style: const TextStyle(
+              color: starGold,
+              fontSize: 11,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
         ],
       ),
     );

@@ -57,7 +57,8 @@ class _HomeScreenState extends State<HomeScreen> with AutomaticKeepAliveClientMi
     }
 
     return Scaffold(
-      //* Menú lateral con el selector de idioma (se abre con swipe desde el borde)
+      extendBody: true,
+      //* Menú lateral con el selector de idioma (se abre con botón en la barra o swipe)
       drawer: const SideMenu(),
       body: PageView(
         //* Esto evitará que rebote 

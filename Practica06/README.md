@@ -11,7 +11,7 @@ Descubre qué hay en cines, qué viene pronto y qué películas son las mejor ca
 ![Dart](https://img.shields.io/badge/Dart-3.10+-0175C2?logo=dart&logoColor=white)
 ![Riverpod](https://img.shields.io/badge/Estado-Riverpod-8C5A9B)
 ![Plataformas](https://img.shields.io/badge/Plataformas-Windows%20%7C%20Android%20%7C%20iOS-5F3A70)
-![Idiomas](https://img.shields.io/badge/Idiomas-ES%20%7C%20EN%20%7C%20DE%20%7C%20ZH%20%7C%20AR-A97DBB)
+![Idiomas](https://img.shields.io/badge/Idiomas-ES%20%7C%20EN%20%7C%20DE%20%7C%20FR%20%7C%20JA-A97DBB)
 
 <br />
 
@@ -26,9 +26,9 @@ Descubre qué hay en cines, qué viene pronto y qué películas son las mejor ca
 películas mejor calificadas, y permite ver el detalle de cada película con su reparto, tráilers y
 películas similares.
 
-La app está disponible en **5 idiomas** (español de México, inglés, alemán, chino y árabe) y se
+La app está disponible en **5 idiomas** (español de México, inglés, alemán, francés y japonés) y se
 cambia desde el menú lateral: se traducen tanto los textos de la app como los datos de las
-películas que llegan de la API.
+películas y series que llegan de la API.
 
 ## Probar la app en línea (Appetize)
 
@@ -78,15 +78,15 @@ sinopsis, géneros, reparto y tráilers). Las películas se recargan solas con e
 | MX | Español | `es-MX` |
 | US | English | `en-US` |
 | DE | Deutsch | `de-DE` |
-| CN | 中文 | `zh-CN` |
-| EG | العربية | `ar-EG` |
+| FR | Français | `fr-FR` |
+| JP | 日本語 | `ja-JP` |
 
-- **Respaldo en inglés:** si una película no tiene traducción en el idioma elegido, The Movie DB
+- **Respaldo en inglés:** si una película o serie no tiene traducción en el idioma elegido, The Movie DB
   devuelve el título original y la sinopsis vacía. En ese caso la app pide también la versión en
   inglés y la usa como respaldo.
-- **Diseño de izquierda a derecha:** la pantalla no se voltea, ni siquiera en árabe.
+- **Diseño fijo LTR:** la interfaz mantiene siempre orientación de izquierda a derecha.
 - **Fechas:** el formato de fecha del detalle y la etiqueta del día en _En cines_ siguen el idioma elegido.
-- El idioma elegido no se guarda: al cerrar la app vuelve a español (MX).
+- **Persistencia con SharedPreferences:** el idioma elegido se guarda en el dispositivo y se recuerda al reabrir la app.
 - Los favoritos conservan el título y la sinopsis en el idioma en que se guardaron.
 
 <details>
@@ -111,7 +111,8 @@ etiqueta cambia al sistema de clasificación de ese país.
 | MX | Clasificación mexicana | `AA`, `A`, `B`, `B15`, `C`, `D` |
 | US | MPA | `G`, `PG`, `PG-13`, `R`, `NC-17` |
 | DE | FSK | `FSK 0`, `FSK 6`, `FSK 12`, `FSK 16`, `FSK 18` |
-| CN / EG | Sin dato en The Movie DB (normalmente) | `NR` |
+| FR | CNC (Francia) | `Tous Publics`, `-12 ans`, `-16 ans`, `-18 ans` |
+| JP | Eirin (Japón) | `G`, `PG12`, `R15+`, `R18+` |
 
 - **De dónde sale:** de `/movie/{id}/release_dates` de The Movie DB. Se toma la clasificación del
   país y se prefiere la del estreno en cines.
