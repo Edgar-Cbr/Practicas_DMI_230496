@@ -15,7 +15,7 @@ Descubre qué hay en cines, qué viene pronto y qué películas son las mejor ca
 
 <br />
 
-[![Probar en Appetize](https://img.shields.io/badge/Probar%20la%20app%20en%20Appetize-8C5A9B?style=for-the-badge&logo=android&logoColor=white)](https://appetize.io/app/b_dqbrzni6n2opryfcgrwoifjnvq)
+[![Probar en Appetize](https://img.shields.io/badge/Probar%20la%20app%20en%20Appetize-8C5A9B?style=for-the-badge&logo=android&logoColor=white)](https://appetize.io/app/b_np23xpmu3ru5whnuguu7zljniy)
 
 </div>
 
@@ -37,9 +37,10 @@ desde el navegador.
 
 <div align="center">
 
-### [**Abrir Cinemapedia en Appetize**](https://appetize.io/app/b_dqbrzni6n2opryfcgrwoifjnvq)
+### [**Abrir Cinemapedia en Appetize**](https://appetize.io/app/b_np23xpmu3ru5whnuguu7zljniy)
 
-**Cinemapedia:** [https://appetize.io/app/b_dqbrzni6n2opryfcgrwoifjnvq](https://appetize.io/app/b_dqbrzni6n2opryfcgrwoifjnvq)
+**Enlace de la app:** [https://appetize.io/app/b_np23xpmu3ru5whnuguu7zljniy](https://appetize.io/app/b_np23xpmu3ru5whnuguu7zljniy)  
+**Enlace directo (Embed):** [https://appetize.io/embed/b_np23xpmu3ru5whnuguu7zljniy](https://appetize.io/embed/b_np23xpmu3ru5whnuguu7zljniy)
 
 </div>
 
@@ -64,9 +65,9 @@ Cinemapedia (paquete `com.example.cinemapedia`) está configurada en Appetize.io
 - **Búsqueda** de películas con sugerencias en tiempo real y debouncer de 500 ms.
 - **Favoritos** guardados en el dispositivo (base de datos local con Isar Community).
 - **Menú lateral** que se abre con el botón de la barra o deslizando desde el borde de la pantalla.
-- **Selector de idioma** con banderas: español, inglés, alemán, chino y árabe (ver [Idiomas](#idiomas-de-la-app)).
-- **Tema oscuro** con fondo negro puro y acentos morados y cian cinematográficos.
-
+- **Selector de idioma** con banderas: español, inglés, alemán, francés y japonés (ver [Idiomas](#idiomas-de-la-app)).
+- **Tema cinematográfico de alta gama** con fondo negro azabache, detalles en oro pulido y cian láser.
+ 
 ## Idiomas de la app
 
 Al elegir un idioma en el menú lateral cambia **todo**: los textos de la app (menú inferior,
