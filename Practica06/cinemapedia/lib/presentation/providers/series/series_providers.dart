@@ -40,3 +40,4 @@ final seriesSlideshowProvider = Provider<List<Movie>>((ref) {
   final onTheAir = ref.watch( onTheAirSeriesProvider );
   return onTheAir.take(6).toList();
 });
+

@@ -5,3 +5,4 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 enum CatalogType { movies, series }
 
 final catalogTypeProvider = StateProvider<CatalogType>((ref) => CatalogType.movies);
+

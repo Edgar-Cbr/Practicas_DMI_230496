@@ -64,3 +64,4 @@ class TvMapper {
     voteCount: json['vote_count'] ?? 0,
   );
 }
+

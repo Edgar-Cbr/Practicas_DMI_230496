@@ -86,6 +86,7 @@ class HomeViewState extends ConsumerState<HomeView> with AutomaticKeepAliveClien
 
         const SliverAppBar(
           floating: true,
+          automaticallyImplyLeading: false,
           backgroundColor: Colors.transparent,
           elevation: 0,
           toolbarHeight: 64,

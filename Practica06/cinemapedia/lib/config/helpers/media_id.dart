@@ -15,3 +15,4 @@ class MediaId {
   /// 'tv' o 'movie': parte de la ruta de la API.
   static String kind( int id ) => isSeries(id) ? 'tv' : 'movie';
 }
+
