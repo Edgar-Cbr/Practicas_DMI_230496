@@ -7,8 +7,8 @@ import 'package:cinemapedia/presentation/providers/providers.dart';
 import 'package:cinemapedia/presentation/widgets/shared/cinemapedia_logo.dart';
 import 'package:cinemapedia/presentation/widgets/shared/flag_icon.dart';
 
-/// Menú lateral (drawer) con diseño cinematográfico moderno, selector de catálogo
-/// (Películas o Series) y selector de idioma con persistencia local.
+/// Menú lateral (drawer) con diseño cinematográfico dorado y de titanio,
+/// selector de catálogo (Películas o Series) y selector de idioma con persistencia local.
 class SideMenu extends ConsumerWidget {
   const SideMenu({super.key});
 
@@ -21,13 +21,13 @@ class SideMenu extends ConsumerWidget {
     final currentCatalog = ref.watch(catalogTypeProvider);
 
     return Drawer(
-      backgroundColor: const Color(0xFF0D0F18),
+      backgroundColor: const Color(0xFF0A0C14),
       surfaceTintColor: Colors.transparent,
       child: SafeArea(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            //* Cabecera estilizada con logo
+            //* Cabecera estilizada con nuevo logo
             Container(
               margin: const EdgeInsets.fromLTRB(16, 16, 16, 12),
               padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
@@ -36,14 +36,14 @@ class SideMenu extends ConsumerWidget {
                   begin: Alignment.topLeft,
                   end: Alignment.bottomRight,
                   colors: [
-                    colors.primary.withValues(alpha: 0.22),
-                    const Color(0xFF161827),
+                    colors.primary.withValues(alpha: 0.25),
+                    const Color(0xFF141824),
                   ],
                 ),
                 borderRadius: BorderRadius.circular(20),
                 border: Border.all(
-                  color: Colors.white.withValues(alpha: 0.1),
-                  width: 1,
+                  color: colors.primary.withValues(alpha: 0.35),
+                  width: 1.2,
                 ),
               ),
               child: Row(
@@ -81,7 +81,7 @@ class SideMenu extends ConsumerWidget {
                       Text(
                         'Tu cine en tu idioma',
                         style: TextStyle(
-                          color: Colors.white.withValues(alpha: 0.6),
+                          color: Colors.white.withValues(alpha: 0.7),
                           fontSize: 12,
                           letterSpacing: 0.3,
                         ),
@@ -210,7 +210,7 @@ class SideMenu extends ConsumerWidget {
                   color: Colors.white.withValues(alpha: 0.03),
                   borderRadius: BorderRadius.circular(14),
                   border: Border.all(
-                    color: Colors.white.withValues(alpha: 0.05),
+                    color: colors.primary.withValues(alpha: 0.2),
                     width: 1,
                   ),
                 ),
@@ -219,7 +219,7 @@ class SideMenu extends ConsumerWidget {
                     Icon(
                       Icons.school_rounded,
                       size: 20,
-                      color: colors.primary.withValues(alpha: 0.8),
+                      color: colors.primary,
                     ),
                     const SizedBox(width: 10),
                     Expanded(
@@ -231,13 +231,13 @@ class SideMenu extends ConsumerWidget {
                             style: TextStyle(
                               color: Colors.white,
                               fontSize: 12,
-                              fontWeight: FontWeight.w600,
+                              fontWeight: FontWeight.bold,
                             ),
                           ),
                           Text(
                             'Desarrollo Móvil Integral',
                             style: TextStyle(
-                              color: Colors.white.withValues(alpha: 0.5),
+                              color: Colors.white.withValues(alpha: 0.6),
                               fontSize: 11,
                             ),
                           ),
@@ -282,19 +282,19 @@ class _ContentChoiceCard extends StatelessWidget {
           padding: const EdgeInsets.symmetric(vertical: 12),
           decoration: BoxDecoration(
             color: selected
-                ? colors.primary.withValues(alpha: 0.2)
+                ? colors.primary.withValues(alpha: 0.22)
                 : Colors.white.withValues(alpha: 0.03),
             borderRadius: BorderRadius.circular(14),
             border: Border.all(
               color: selected
-                  ? colors.primary.withValues(alpha: 0.6)
+                  ? colors.primary
                   : Colors.white.withValues(alpha: 0.08),
               width: selected ? 1.5 : 1,
             ),
             boxShadow: selected
                 ? [
                     BoxShadow(
-                      color: colors.primary.withValues(alpha: 0.25),
+                      color: colors.primary.withValues(alpha: 0.3),
                       blurRadius: 10,
                       offset: const Offset(0, 3),
                     )
@@ -353,19 +353,19 @@ class _LanguageCard extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
             decoration: BoxDecoration(
               color: selected
-                  ? colors.primary.withValues(alpha: 0.16)
+                  ? colors.primary.withValues(alpha: 0.18)
                   : Colors.white.withValues(alpha: 0.03),
               borderRadius: BorderRadius.circular(16),
               border: Border.all(
                 color: selected
-                    ? colors.primary.withValues(alpha: 0.6)
+                    ? colors.primary
                     : Colors.white.withValues(alpha: 0.06),
                 width: selected ? 1.5 : 1,
               ),
               boxShadow: selected
                   ? [
                       BoxShadow(
-                        color: colors.primary.withValues(alpha: 0.2),
+                        color: colors.primary.withValues(alpha: 0.25),
                         blurRadius: 10,
                         offset: const Offset(0, 3),
                       )
@@ -396,9 +396,11 @@ class _LanguageCard extends StatelessWidget {
                         language.nativeName,
                         style: TextStyle(
                           color: selected
-                              ? colors.primary.withValues(alpha: 0.9)
+                              ? colors.primary
                               : Colors.white.withValues(alpha: 0.4),
                           fontSize: 11,
+                          fontWeight:
+                              selected ? FontWeight.w600 : FontWeight.normal,
                         ),
                       ),
                     ],
@@ -414,7 +416,7 @@ class _LanguageCard extends StatelessWidget {
                     child: const Icon(
                       Icons.check_rounded,
                       size: 14,
-                      color: Colors.white,
+                      color: Colors.black,
                     ),
                   ),
               ],

@@ -180,7 +180,7 @@ class _MovieItem extends StatelessWidget {
                     height: 130,
                     fit: BoxFit.cover,
                     image: NetworkImage(movie.posterPath),
-                    placeholder: const AssetImage('assets/loaders/bottle-loader.gif'),
+                    placeholder: const AssetImage('assets/loaders/cinema-loader.gif'),
                   )
                 ),
               ),

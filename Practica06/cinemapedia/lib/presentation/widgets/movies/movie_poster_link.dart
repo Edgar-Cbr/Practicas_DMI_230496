@@ -42,7 +42,7 @@ class MoviePosterLink extends StatelessWidget {
                 width: double.infinity,
                 height: double.infinity,
                 fit: BoxFit.cover,
-                placeholder: const AssetImage('assets/loaders/bottle-loader.gif'),
+                placeholder: const AssetImage('assets/loaders/cinema-loader.gif'),
                 image: NetworkImage(movie.posterPath),
               ),
             ),

@@ -176,7 +176,7 @@ class _Slide extends StatelessWidget {
                 // Imagen de fondo con placeholder animado
                 FadeInImage(
                   fit: BoxFit.cover,
-                  placeholder: const AssetImage('assets/loaders/bottle-loader.gif'),
+                  placeholder: const AssetImage('assets/loaders/cinema-loader.gif'),
                   image: NetworkImage(movie.backdropPath),
                 ),
 

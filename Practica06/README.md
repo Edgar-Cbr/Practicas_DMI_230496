@@ -123,9 +123,9 @@ etiqueta cambia al sistema de clasificación de ese país.
 
 ## Icono de la app
 
-El nuevo icono de Cinemapedia es un emblema cinematográfico moderno denominado **"Cinematic Nexus"**:
-un prisma luminoso de reproducción (**Play**) con degradados en tonos cian, violeta y fucsia, rodeado
-por un escudo hexagonal facetado con muescas superiores de claqueta de cine, todo sobre fondo negro profundo.
+El nuevo icono de Cinemapedia es un emblema cinematográfico moderno denominado **"Solaris Cinema Aperture"**:
+un lente de cámara cinematográfica de alta precisión en oro ámbar y titanio con aspas de obturador en espiral,
+acentos láser cian y un prisma central de reproducción (**Play**), todo sobre fondo negro obsidiana profundo.
 
 <div align="center">
 
@@ -137,7 +137,7 @@ por un escudo hexagonal facetado con muescas superiores de claqueta de cine, tod
   de carga (se dibuja en código con `CustomPainter`, por eso se ve nítido a cualquier tamaño y soporta animación con `progress`).
 - **Icono adaptativo en Android:** el emblema está centrado y dentro de la zona segura, así que se ve
   completo y parejo con cualquier forma de icono (círculo, cuadrado, squircle, etc.).
-- El loader de los pósters (`cinemapedia/assets/loaders/bottle-loader.gif`) mantiene la estética cinematográfica.
+- El loader animado de las imágenes (`cinemapedia/assets/loaders/cinema-loader.gif`) es un carrete de cine dorado giratorio con pulsación luminosa cinematográfica, sustituyendo la animación previa.
 - El archivo base en 1024 px está en [`cinemapedia/assets/icon/app_icon.png`](cinemapedia/assets/icon/app_icon.png).
 - Hay versiones para Android (adaptativo), iOS, macOS, Windows (`.ico`) y web.
 
