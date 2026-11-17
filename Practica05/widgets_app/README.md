@@ -2,6 +2,27 @@
 
 Catálogo interactivo y modular de componentes, controles y widgets avanzados en Flutter utilizando **Material Design 3**, **Riverpod** para el manejo de estado y **GoRouter** para la navegación declarativa.
 
+<div align="center">
+
+[![Probar en Appetize](https://img.shields.io/badge/Probar%20la%20app%20en%20Appetize-8C5A9B?style=for-the-badge&logo=android&logoColor=white)](https://appetize.io/app/b_azmmw2o3spyccjmocmshpyu4pu)
+
+</div>
+
+---
+
+## Probar la app en línea (Appetize)
+
+No necesitas instalar nada: puedes abrir Widgets App en un dispositivo Android virtual directamente desde el navegador.
+
+<div align="center">
+
+### [**Abrir Widgets App en Appetize**](https://appetize.io/app/b_azmmw2o3spyccjmocmshpyu4pu)
+
+**Enlace de la app:** [https://appetize.io/app/b_azmmw2o3spyccjmocmshpyu4pu](https://appetize.io/app/b_azmmw2o3spyccjmocmshpyu4pu)  
+**Enlace directo (Embed):** [https://appetize.io/embed/b_azmmw2o3spyccjmocmshpyu4pu](https://appetize.io/embed/b_azmmw2o3spyccjmocmshpyu4pu)
+
+</div>
+
 ---
 
 ## Información del Estudiante y la Materia
